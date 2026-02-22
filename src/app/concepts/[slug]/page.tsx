@@ -73,7 +73,6 @@ export default async function ConceptDetailPage({
           >
             <h3 className="font-medium mb-1">{lesson.title}</h3>
             <p className="text-sm text-muted">
-              {lesson.objectives.length} objectives &middot;{" "}
               {lesson.recipeOptions.length} recipes to choose from
             </p>
           </Link>

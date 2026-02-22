@@ -50,17 +50,10 @@ export default async function LessonDetailPage({
         </div>
       </div>
 
-      {/* Objectives */}
+      {/* Objective */}
       <div className="bg-surface border border-border rounded-lg p-5 mb-8">
-        <h2 className="font-semibold mb-3">Learning Objectives</h2>
-        <ul className="space-y-2">
-          {lesson.objectives.map((obj, i) => (
-            <li key={i} className="flex items-start gap-2 text-sm">
-              <span className="text-accent mt-0.5">&#9679;</span>
-              <span>{obj}</span>
-            </li>
-          ))}
-        </ul>
+        <h2 className="font-semibold mb-2">Objective</h2>
+        <p className="text-sm">{lesson.objective}</p>
       </div>
 
       {/* Recipe picker */}

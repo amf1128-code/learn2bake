@@ -1,14 +1,14 @@
-import { lessons } from "@/data/lessons";
+import { readJsonDir, readJsonFile } from "@/lib/data";
 import { Lesson } from "@/types/lesson";
 
 export function getAllLessons(): Lesson[] {
-  return [...lessons].sort((a, b) => a.order - b.order);
+  return readJsonDir<Lesson>("lessons").sort((a, b) => a.order - b.order);
 }
 
 export function getLesson(slug: string): Lesson | undefined {
-  return lessons.find((l) => l.slug === slug);
+  return readJsonFile<Lesson>("lessons", slug);
 }
 
 export function getLessonByConcept(conceptSlug: string): Lesson | undefined {
-  return lessons.find((l) => l.conceptSlug === conceptSlug);
+  return getAllLessons().find((l) => l.conceptSlug === conceptSlug);
 }

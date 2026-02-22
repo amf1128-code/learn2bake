@@ -39,10 +39,6 @@ export default function LearnPage() {
                     {lesson.recipeOptions.length} recipe
                     {lesson.recipeOptions.length !== 1 ? "s" : ""}
                   </span>
-                  <span>
-                    {lesson.objectives.length} objective
-                    {lesson.objectives.length !== 1 ? "s" : ""}
-                  </span>
                 </div>
               </div>
             </Link>

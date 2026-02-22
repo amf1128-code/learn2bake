@@ -4,12 +4,7 @@
   "conceptSlug": "enrichment",
   "order": 4,
   "introduction": "So far you've been working with lean doughs — flour, water, salt, yeast. Now it's time to add the good stuff: butter, sugar, eggs, milk. These ingredients transform bread from rustic and chewy to soft, rich, and tender.\n\nBut enrichment comes with trade-offs:\n- **Fat coats gluten strands**, making them slide past each other instead of linking tightly. This creates a tender crumb but means you need to build extra gluten before adding the fat.\n- **Sugar feeds yeast** (up to a point), but too much sugar pulls water away from the yeast through osmosis, slowing fermentation.\n- **Eggs add structure and richness**, contributing both fat (yolks) and protein (whites).\n\nThis lesson teaches you to work with these richer doughs and understand how each enrichment changes the bread.",
-  "objectives": [
-    "Understand how fat, sugar, and eggs each affect dough",
-    "Learn why enriched doughs rise slower than lean doughs",
-    "Practice incorporating butter into a developed dough",
-    "Taste the difference between lean and enriched breads"
-  ],
+  "objective": "Understand how fat, sugar, and eggs transform dough behavior and flavor",
   "recipeOptions": [
     {
       "recipeSlug": "brioche",

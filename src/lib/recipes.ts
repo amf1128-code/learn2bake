@@ -1,8 +1,8 @@
-import { recipes } from "@/data/recipes";
+import { readJsonDir, readJsonFile } from "@/lib/data";
 import { Recipe, Difficulty } from "@/types/recipe";
 
 export function getAllRecipes(): Recipe[] {
-  return recipes.sort((a, b) => {
+  return readJsonDir<Recipe>("recipes").sort((a, b) => {
     const order: Record<Difficulty, number> = {
       beginner: 0,
       intermediate: 1,
@@ -13,13 +13,13 @@ export function getAllRecipes(): Recipe[] {
 }
 
 export function getRecipe(slug: string): Recipe | undefined {
-  return recipes.find((r) => r.slug === slug);
+  return readJsonFile<Recipe>("recipes", slug);
 }
 
 export function getRecipesByDifficulty(difficulty: Difficulty): Recipe[] {
-  return recipes.filter((r) => r.difficulty === difficulty);
+  return getAllRecipes().filter((r) => r.difficulty === difficulty);
 }
 
 export function getRecipesByConcept(conceptSlug: string): Recipe[] {
-  return recipes.filter((r) => r.conceptsTaught.includes(conceptSlug));
+  return getAllRecipes().filter((r) => r.conceptsTaught.includes(conceptSlug));
 }
