@@ -1,0 +1,8 @@
+{
+  "slug": "scoring-and-crust",
+  "name": "Scoring & Crust",
+  "description": "Scoring is the art of slashing the dough before it enters the oven. These cuts control where the bread expands (oven spring) and create the beautiful patterns on artisan loaves. The crust itself is formed by the Maillard reaction and caramelization at high heat, and is enhanced by steam in the early minutes of baking.",
+  "icon": "🔪",
+  "order": 6,
+  "prerequisites": ["shaping", "fermentation"]
+}

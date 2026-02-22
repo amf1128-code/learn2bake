@@ -1,0 +1,31 @@
+{
+  "slug": "lesson-fermentation",
+  "title": "The Magic of Fermentation",
+  "conceptSlug": "fermentation",
+  "order": 3,
+  "introduction": "Fermentation is where flour and water become bread. Yeast (whether commercial instant yeast or wild sourdough cultures) consumes sugars in the flour and produces two things: carbon dioxide gas (which makes the dough rise) and organic acids and alcohols (which create flavor).\n\nThe speed of fermentation is controlled by three levers:\n- **Temperature**: Warmer = faster. Cooler = slower but more flavorful.\n- **Amount of yeast**: More yeast = faster rise.\n- **Time**: Longer fermentation = more complex flavor.\n\nMost beginner recipes optimize for speed. As you advance, you'll learn to slow fermentation down for better results. This lesson gets you comfortable watching dough rise and knowing when it's ready.",
+  "objectives": [
+    "Understand what yeast does in dough",
+    "Learn to judge when bulk fermentation is complete (the poke test, visual cues)",
+    "Experience the relationship between time, temperature, and rise",
+    "Understand the difference between bulk fermentation and proofing"
+  ],
+  "recipeOptions": [
+    {
+      "recipeSlug": "basic-focaccia",
+      "whyThisRecipe": "Focaccia has a clear, visual bulk fermentation — the dough gets bubbly and puffy in the bowl. Then a second proof in the pan. Two chances to observe fermentation at work.",
+      "recommended": true
+    },
+    {
+      "recipeSlug": "sandwich-loaf",
+      "whyThisRecipe": "The sandwich loaf has two distinct rises: a bulk fermentation in a bowl and a final proof in the pan where you watch it crown above the rim. Great for learning the poke test.",
+      "recommended": false
+    },
+    {
+      "recipeSlug": "sourdough-boule",
+      "whyThisRecipe": "If you're ready for a challenge, sourdough fermentation is slow, wild, and unpredictable. You'll learn to read the dough rather than rely on a timer. Advanced option.",
+      "recommended": false
+    }
+  ],
+  "wrapUp": "You've now watched yeast work its magic — transforming a flat, dense mass into a puffy, gas-filled dough. You've learned that fermentation is not just about rising; it's about flavor development. The poke test and visual cues (bubbles, volume increase, jiggly texture) are your tools for knowing when the dough is ready. Trust what you see and feel, not just the timer."
+}

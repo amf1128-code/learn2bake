@@ -1,0 +1,26 @@
+{
+  "slug": "lesson-hydration",
+  "title": "Understanding Hydration",
+  "conceptSlug": "hydration",
+  "order": 2,
+  "introduction": "Hydration is the ratio of water to flour in your dough, expressed as a baker's percentage. A dough with 500g flour and 325g water is 65% hydration. One with 400g water is 80%.\n\nThis single number changes everything about how a dough feels and behaves. Low-hydration doughs (60-65%) are firm, smooth, and easy to shape. High-hydration doughs (75-85%) are wet, sticky, harder to handle, but produce bread with an open, airy crumb and crispy crust.\n\nUnderstanding hydration gives you a vocabulary for dough. Instead of 'the dough feels weird,' you'll know 'this is what 80% hydration feels like — and that's exactly right.'",
+  "objectives": [
+    "Understand baker's percentages and how to calculate hydration",
+    "Feel the difference between low and high hydration doughs",
+    "Learn why hydration affects crumb structure",
+    "Gain confidence working with wet, sticky doughs"
+  ],
+  "recipeOptions": [
+    {
+      "recipeSlug": "basic-focaccia",
+      "whyThisRecipe": "At 80% hydration, focaccia is the perfect intro to wet doughs. The dough is sticky and loose, but the recipe is forgiving — no shaping required. You'll feel exactly what high hydration means.",
+      "recommended": true
+    },
+    {
+      "recipeSlug": "sandwich-loaf",
+      "whyThisRecipe": "At 65% hydration, this is the opposite end of the spectrum. If you've already made focaccia, bake this to feel the dramatic difference. If it's your first bake, the firmer dough is easier to handle.",
+      "recommended": false
+    }
+  ],
+  "wrapUp": "Now you've felt what hydration does to dough. Whether you worked with the wet, jiggly focaccia dough or the firm sandwich loaf, you now have a reference point. When a recipe says '75% hydration,' you can imagine where that falls on the spectrum. This intuition will serve you for every bread you bake from here on."
+}

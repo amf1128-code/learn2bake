@@ -1,0 +1,31 @@
+{
+  "slug": "lesson-shaping",
+  "title": "Shaping: Creating Structure & Tension",
+  "conceptSlug": "shaping",
+  "order": 5,
+  "introduction": "Your dough is fermented, full of gas, and ready to become bread. But without proper shaping, it'll just spread into a flat disc. Shaping is the skill that transforms a blob of dough into a taut, structured form that can hold its shape through proofing and baking.\n\nThe key concept is **surface tension** — creating a smooth, tight 'skin' on the outside of the dough that acts like a balloon, holding the gas inside. Different shapes (boule, batard, loaf, rolls) use different techniques, but they all create tension.\n\nShaping is the most tactile skill in baking. It takes practice, and your first loaves won't look like a bakery's. That's completely normal.",
+  "objectives": [
+    "Understand what surface tension is and why it matters",
+    "Learn pre-shaping and final shaping techniques",
+    "Practice creating a taut, smooth dough surface",
+    "Shape at least one style: a round (boule), a log (loaf), or rolls"
+  ],
+  "recipeOptions": [
+    {
+      "recipeSlug": "sandwich-loaf",
+      "whyThisRecipe": "The letter-fold-then-roll technique for a loaf pan is one of the most practical shapes to learn. The pan is forgiving — it holds the shape for you while you build skills.",
+      "recommended": true
+    },
+    {
+      "recipeSlug": "cinnamon-rolls",
+      "whyThisRecipe": "Rolling, filling, and cutting cinnamon rolls teaches you to work a rolled dough and portion evenly. Fun and delicious.",
+      "recommended": false
+    },
+    {
+      "recipeSlug": "sourdough-boule",
+      "whyThisRecipe": "Shaping a free-form boule (round) is the ultimate test — no pan to help. You must create all the tension yourself. Advanced but deeply rewarding.",
+      "recommended": false
+    }
+  ],
+  "wrapUp": "Shaping is a skill that improves with every bake. Today you learned to create surface tension — that taut outer layer that gives bread its form. Whether you shaped a pan loaf, cinnamon rolls, or a free-form boule, you practiced the fundamental motion: folding, tucking, and creating tension. Your hands now know what properly shaped dough feels like."
+}

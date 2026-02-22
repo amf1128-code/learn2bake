@@ -1,0 +1,93 @@
+{
+  "slug": "sandwich-loaf",
+  "title": "Simple Sandwich Loaf",
+  "description": "A classic white sandwich bread that teaches fundamental dough handling. At 65% hydration, this dough is firm enough to knead and shape — the opposite end of the spectrum from focaccia.",
+  "difficulty": "beginner",
+  "totalTime": "3 hours",
+  "activeTime": "30 minutes",
+  "servings": "1 loaf",
+  "conceptsTaught": ["gluten-development", "fermentation", "shaping"],
+  "ingredients": [
+    { "name": "bread flour", "amount": 500, "unit": "g", "bakersPercentage": 100 },
+    { "name": "warm water", "amount": 325, "unit": "g", "bakersPercentage": 65 },
+    { "name": "instant yeast", "amount": 7, "unit": "g", "bakersPercentage": 1.4 },
+    { "name": "sugar", "amount": 25, "unit": "g", "bakersPercentage": 5 },
+    { "name": "salt", "amount": 10, "unit": "g", "bakersPercentage": 2 },
+    { "name": "unsalted butter (softened)", "amount": 30, "unit": "g", "bakersPercentage": 6 }
+  ],
+  "steps": [
+    {
+      "id": "sandwich-1",
+      "instruction": "In a large bowl, combine flour, sugar, yeast, and salt. Add the warm water and mix until a shaggy dough forms. Let it rest for 5 minutes.",
+      "duration": 300,
+      "timerLabel": "Brief rest",
+      "timerType": "countdown",
+      "tips": [
+        "At 65% hydration, this dough should feel noticeably firmer than a focaccia dough.",
+        "The short rest lets the flour absorb the water before you start kneading."
+      ],
+      "conceptsReinforced": ["hydration"]
+    },
+    {
+      "id": "sandwich-2",
+      "instruction": "Turn the dough out onto a clean surface and knead for 8–10 minutes. After 5 minutes, incorporate the softened butter by flattening the dough, spreading the butter on, then folding and kneading until fully absorbed. The dough should become smooth, elastic, and pass the windowpane test.",
+      "duration": 600,
+      "timerLabel": "Kneading",
+      "timerType": "countdown",
+      "tips": [
+        "Windowpane test: pull a small piece of dough thin — if you can stretch it until light passes through without it tearing, the gluten is developed.",
+        "Adding butter partway through lets you build gluten first, then enrich.",
+        "If the dough tears easily when you stretch it, keep kneading."
+      ],
+      "conceptsReinforced": ["gluten-development", "enrichment"]
+    },
+    {
+      "id": "sandwich-3",
+      "instruction": "Shape the dough into a ball, place it in a lightly oiled bowl, and cover. Let it rise until doubled in size.",
+      "duration": 3600,
+      "timerLabel": "First rise",
+      "timerType": "countdown",
+      "tips": [
+        "The poke test: press a floured finger into the dough about 1cm deep. If the indent springs back slowly, it's ready. If it springs back fast, it needs more time.",
+        "Temperature matters — a warm kitchen (24°C+) speeds fermentation."
+      ],
+      "conceptsReinforced": ["fermentation"]
+    },
+    {
+      "id": "sandwich-4",
+      "instruction": "Punch down the dough gently to release large gas bubbles. Turn it out and shape into a log: flatten into a rectangle, fold the top third down and the bottom third up (like a letter), then roll tightly from one short end to the other. Pinch the seam closed.",
+      "tips": [
+        "The 'letter fold then roll' method creates even tension throughout the loaf.",
+        "Pinch the seam and ends well — loose seams can open during baking.",
+        "Place seam-side down in the pan."
+      ],
+      "conceptsReinforced": ["shaping"]
+    },
+    {
+      "id": "sandwich-5",
+      "instruction": "Place the shaped dough seam-side down in a greased 9x5 inch (23x13cm) loaf pan. Cover and let it proof until the dough crowns about 2.5cm (1 inch) above the rim of the pan.",
+      "duration": 2700,
+      "timerLabel": "Final proof",
+      "timerType": "countdown",
+      "tips": [
+        "This usually takes 45 minutes to 1 hour.",
+        "While it proofs, preheat your oven to 190°C (375°F).",
+        "Don't over-proof — if it rises too much, it may collapse in the oven."
+      ],
+      "conceptsReinforced": ["fermentation"]
+    },
+    {
+      "id": "sandwich-6",
+      "instruction": "Bake at 190°C (375°F) until the top is golden brown and the internal temperature reaches 88°C (190°F). The loaf should sound hollow when tapped on the bottom.",
+      "duration": 1800,
+      "timerLabel": "Bake",
+      "timerType": "countdown",
+      "tips": [
+        "If the top browns too quickly, tent with foil for the last 10 minutes.",
+        "Remove from the pan immediately and cool on a wire rack.",
+        "Resist cutting into it for at least 30 minutes — the crumb is still setting."
+      ],
+      "conceptsReinforced": ["scoring-and-crust"]
+    }
+  ]
+}

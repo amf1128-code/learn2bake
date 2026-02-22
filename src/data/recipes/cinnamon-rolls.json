@@ -1,0 +1,117 @@
+{
+  "slug": "cinnamon-rolls",
+  "title": "Cinnamon Rolls",
+  "description": "Soft, gooey cinnamon rolls with cream cheese glaze. This enriched dough teaches you about lamination (creating layers) and how sugar and fat affect fermentation.",
+  "difficulty": "intermediate",
+  "totalTime": "4 hours",
+  "activeTime": "40 minutes",
+  "servings": "12 rolls",
+  "conceptsTaught": ["enrichment", "fermentation", "shaping"],
+  "ingredients": [
+    { "name": "all-purpose flour", "amount": 500, "unit": "g", "bakersPercentage": 100 },
+    { "name": "whole milk (warm)", "amount": 240, "unit": "g", "bakersPercentage": 48 },
+    { "name": "unsalted butter (melted)", "amount": 75, "unit": "g", "bakersPercentage": 15 },
+    { "name": "sugar", "amount": 65, "unit": "g", "bakersPercentage": 13 },
+    { "name": "eggs", "amount": 2, "unit": "large" },
+    { "name": "instant yeast", "amount": 9, "unit": "g", "bakersPercentage": 1.8 },
+    { "name": "salt", "amount": 7, "unit": "g", "bakersPercentage": 1.4 },
+    { "name": "brown sugar (filling)", "amount": 200, "unit": "g" },
+    { "name": "ground cinnamon (filling)", "amount": 15, "unit": "g" },
+    { "name": "butter, softened (filling)", "amount": 60, "unit": "g" },
+    { "name": "cream cheese (glaze)", "amount": 115, "unit": "g" },
+    { "name": "powdered sugar (glaze)", "amount": 120, "unit": "g" },
+    { "name": "vanilla extract (glaze)", "amount": 5, "unit": "ml" }
+  ],
+  "steps": [
+    {
+      "id": "cinnamon-1",
+      "instruction": "In a large bowl or stand mixer, combine flour, sugar, yeast, and salt. Add the warm milk, melted butter, and eggs. Mix until a soft dough forms, then knead on medium speed (or by hand) until smooth and elastic, about 8 minutes.",
+      "duration": 480,
+      "timerLabel": "Knead dough",
+      "timerType": "countdown",
+      "tips": [
+        "This is an enriched dough — the butter, eggs, and sugar make it softer and stickier than a lean dough.",
+        "The dough should pull away from the sides of the bowl when fully kneaded.",
+        "It should feel soft, smooth, and slightly tacky, not sticky."
+      ],
+      "conceptsReinforced": ["gluten-development", "enrichment"]
+    },
+    {
+      "id": "cinnamon-2",
+      "instruction": "Place the dough in a lightly oiled bowl, cover, and let it rise until doubled in size.",
+      "duration": 3600,
+      "timerLabel": "First rise",
+      "timerType": "countdown",
+      "tips": [
+        "Enriched doughs rise slower than lean doughs because fat and sugar inhibit yeast activity.",
+        "This is a key learning moment: compare this rise time to a simple lean dough.",
+        "Expect 1–1.5 hours depending on temperature."
+      ],
+      "conceptsReinforced": ["fermentation", "enrichment"]
+    },
+    {
+      "id": "cinnamon-3",
+      "instruction": "While dough rises, prepare the filling: mix the brown sugar and cinnamon together in a bowl. Have the softened butter ready.",
+      "tips": [
+        "Room temperature butter spreads evenly. Cold butter will tear the dough.",
+        "You can add a pinch of salt to the filling to balance the sweetness."
+      ],
+      "conceptsReinforced": ["enrichment"]
+    },
+    {
+      "id": "cinnamon-4",
+      "instruction": "Punch down the risen dough and roll it out on a lightly floured surface into a rectangle about 40x30cm (16x12 inches). Spread the softened butter evenly over the surface, leaving a 1cm border at the far edge. Sprinkle the cinnamon-sugar filling evenly over the butter.",
+      "tips": [
+        "Even thickness means even rolls. Take your time with the rolling pin.",
+        "The butter acts as a glue for the filling and creates layers when rolled.",
+        "The bare border at the far edge will help seal the roll."
+      ],
+      "conceptsReinforced": ["shaping", "enrichment"]
+    },
+    {
+      "id": "cinnamon-5",
+      "instruction": "Starting from the long edge closest to you, roll the dough up tightly into a log. Pinch the seam closed. Using a sharp knife or dental floss, cut into 12 equal pieces. Place cut-side up in a greased 9x13 inch (23x33cm) baking pan, spacing evenly.",
+      "tips": [
+        "Dental floss gives the cleanest cuts — slide it under the log, cross the ends, and pull to slice.",
+        "A knife works too, but use a sawing motion to avoid squishing the roll.",
+        "They should be close but not touching — they'll grow together during proofing."
+      ],
+      "conceptsReinforced": ["shaping"]
+    },
+    {
+      "id": "cinnamon-6",
+      "instruction": "Cover the pan and let the rolls proof until puffy and they've expanded to fill the pan, touching each other.",
+      "duration": 2700,
+      "timerLabel": "Final proof",
+      "timerType": "countdown",
+      "tips": [
+        "They should look pillowy and the dough should spring back slowly when poked.",
+        "Preheat your oven to 180°C (350°F) while they proof.",
+        "Don't rush this — under-proofed rolls will be dense in the center."
+      ],
+      "conceptsReinforced": ["fermentation"]
+    },
+    {
+      "id": "cinnamon-7",
+      "instruction": "Bake at 180°C (350°F) until the rolls are golden on top and cooked through.",
+      "duration": 1500,
+      "timerLabel": "Bake",
+      "timerType": "countdown",
+      "tips": [
+        "The center rolls take the longest — check that they're not doughy.",
+        "They should be golden but not dark brown (the sugar can burn).",
+        "Internal temperature should reach about 85°C (185°F)."
+      ],
+      "conceptsReinforced": ["scoring-and-crust"]
+    },
+    {
+      "id": "cinnamon-8",
+      "instruction": "While the rolls bake, make the glaze: beat together cream cheese, powdered sugar, and vanilla until smooth. Spread the glaze over the hot rolls as soon as they come out of the oven.",
+      "tips": [
+        "Glazing hot rolls lets the glaze melt slightly and seep into the crevices.",
+        "This is the payoff for all that work — don't skimp on the glaze!"
+      ],
+      "conceptsReinforced": ["enrichment"]
+    }
+  ]
+}

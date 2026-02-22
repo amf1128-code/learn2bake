@@ -1,0 +1,26 @@
+{
+  "slug": "lesson-enrichment",
+  "title": "Enriched Doughs: Adding Fat, Sugar & Eggs",
+  "conceptSlug": "enrichment",
+  "order": 4,
+  "introduction": "So far you've been working with lean doughs — flour, water, salt, yeast. Now it's time to add the good stuff: butter, sugar, eggs, milk. These ingredients transform bread from rustic and chewy to soft, rich, and tender.\n\nBut enrichment comes with trade-offs:\n- **Fat coats gluten strands**, making them slide past each other instead of linking tightly. This creates a tender crumb but means you need to build extra gluten before adding the fat.\n- **Sugar feeds yeast** (up to a point), but too much sugar pulls water away from the yeast through osmosis, slowing fermentation.\n- **Eggs add structure and richness**, contributing both fat (yolks) and protein (whites).\n\nThis lesson teaches you to work with these richer doughs and understand how each enrichment changes the bread.",
+  "objectives": [
+    "Understand how fat, sugar, and eggs each affect dough",
+    "Learn why enriched doughs rise slower than lean doughs",
+    "Practice incorporating butter into a developed dough",
+    "Taste the difference between lean and enriched breads"
+  ],
+  "recipeOptions": [
+    {
+      "recipeSlug": "brioche",
+      "whyThisRecipe": "At 50% butter, brioche is enrichment taken to the extreme. You'll add cold butter cube by cube to a kneaded dough and feel how it transforms the texture. This is the master class.",
+      "recommended": true
+    },
+    {
+      "recipeSlug": "cinnamon-rolls",
+      "whyThisRecipe": "A moderately enriched dough (butter, sugar, eggs, milk) that's more approachable than brioche. The filling and shaping add fun to the process.",
+      "recommended": false
+    }
+  ],
+  "wrapUp": "You've now experienced how butter, sugar, and eggs transform dough. The crumb is softer, the flavor richer, and the fermentation noticeably slower. These are the rules of enriched doughs: more fat = more tender, more sugar = sweeter but slower to rise, more eggs = richer color and structure. With this understanding, you can read any enriched bread recipe and predict how the dough will behave."
+}

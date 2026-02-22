@@ -1,0 +1,120 @@
+{
+  "slug": "brioche",
+  "title": "Classic Brioche",
+  "description": "A rich, buttery French bread that teaches you about enriched doughs. With eggs and butter making up a large portion of the dough, brioche pushes gluten development to its limits.",
+  "difficulty": "intermediate",
+  "totalTime": "14 hours (including overnight cold fermentation)",
+  "activeTime": "45 minutes",
+  "servings": "1 loaf or 8 rolls",
+  "conceptsTaught": ["enrichment", "gluten-development", "fermentation"],
+  "ingredients": [
+    { "name": "bread flour", "amount": 350, "unit": "g", "bakersPercentage": 100 },
+    { "name": "sugar", "amount": 50, "unit": "g", "bakersPercentage": 14 },
+    { "name": "salt", "amount": 7, "unit": "g", "bakersPercentage": 2 },
+    { "name": "instant yeast", "amount": 7, "unit": "g", "bakersPercentage": 2 },
+    { "name": "whole eggs", "amount": 4, "unit": "large" },
+    { "name": "unsalted butter (cold, cubed)", "amount": 175, "unit": "g", "bakersPercentage": 50 },
+    { "name": "egg wash (1 egg + 1 tbsp water)", "amount": 1, "unit": "batch" }
+  ],
+  "steps": [
+    {
+      "id": "brioche-1",
+      "instruction": "In a stand mixer bowl (or large bowl), combine flour, sugar, salt, and yeast. Add the eggs and mix on low speed with the dough hook until a shaggy dough forms. Increase to medium speed and knead for about 10 minutes until the dough is smooth and elastic.",
+      "duration": 600,
+      "timerLabel": "Initial kneading",
+      "timerType": "countdown",
+      "tips": [
+        "Brioche dough is very sticky — resist adding extra flour. The stickiness is from the eggs.",
+        "The dough should pull cleanly from the sides of the bowl when ready.",
+        "If kneading by hand, use the 'slap and fold' technique on a clean surface."
+      ],
+      "conceptsReinforced": ["gluten-development"]
+    },
+    {
+      "id": "brioche-2",
+      "instruction": "With the mixer on medium-low, add the cold butter one cube at a time, waiting for each piece to be mostly incorporated before adding the next. This will take about 10 minutes. The dough will look broken and messy midway — this is normal. Keep mixing until smooth.",
+      "duration": 600,
+      "timerLabel": "Butter incorporation",
+      "timerType": "countdown",
+      "tips": [
+        "Cold butter is key — it incorporates into the gluten network without melting and making the dough greasy.",
+        "At 50% butter (baker's percentage), this is a heavily enriched dough. The fat coats gluten strands, making the final bread incredibly tender.",
+        "Don't panic when the dough falls apart mid-mixing. It will come back together."
+      ],
+      "conceptsReinforced": ["enrichment", "gluten-development"]
+    },
+    {
+      "id": "brioche-3",
+      "instruction": "Once all butter is incorporated, continue mixing on medium speed until the dough is smooth, shiny, and elastic. It should pass the windowpane test — you can stretch a piece thin enough to see light through it without tearing.",
+      "duration": 300,
+      "timerLabel": "Final mixing",
+      "timerType": "countdown",
+      "tips": [
+        "The dough should slap the sides of the bowl cleanly.",
+        "It will feel very soft and slightly sticky, but not wet.",
+        "The windowpane should be even and smooth — this is fully developed gluten."
+      ],
+      "conceptsReinforced": ["gluten-development"]
+    },
+    {
+      "id": "brioche-4",
+      "instruction": "Transfer the dough to a lightly oiled bowl, cover tightly with plastic wrap, and let it rise at room temperature for 1 hour.",
+      "duration": 3600,
+      "timerLabel": "Room temperature rise",
+      "timerType": "countdown",
+      "tips": [
+        "It won't double — enriched doughs rise slower because the fat and sugar weigh them down.",
+        "You're looking for about 50% increase in volume.",
+        "This initial rise develops flavor before the long cold fermentation."
+      ],
+      "conceptsReinforced": ["fermentation"]
+    },
+    {
+      "id": "brioche-5",
+      "instruction": "Punch down the dough, wrap tightly in plastic, and refrigerate overnight (at least 8 hours, up to 24). Cold fermentation firms the butter, makes the dough easier to shape, and develops deep flavor.",
+      "tips": [
+        "This overnight rest is not optional — cold dough is essential for shaping brioche.",
+        "The slow, cold fermentation produces complex flavors that quick rises can't match.",
+        "The butter solidifies in the fridge, giving the dough structure."
+      ],
+      "conceptsReinforced": ["fermentation", "enrichment"]
+    },
+    {
+      "id": "brioche-6",
+      "instruction": "Remove the dough from the fridge. For a loaf: divide into 4 equal pieces, shape each into a smooth ball, and place side by side in a greased 9x5 inch loaf pan. For rolls: divide into 8 pieces and place in a muffin tin or on a baking sheet.",
+      "tips": [
+        "Work quickly — the dough is easiest to shape while still cold.",
+        "Tuck the dough under itself to create surface tension on top.",
+        "If it gets too warm and sticky, return to the fridge for 15 minutes."
+      ],
+      "conceptsReinforced": ["shaping"]
+    },
+    {
+      "id": "brioche-7",
+      "instruction": "Cover and let the shaped brioche proof at room temperature until nearly doubled and the dough looks puffy and jiggly when you gently shake the pan.",
+      "duration": 5400,
+      "timerLabel": "Final proof",
+      "timerType": "countdown",
+      "tips": [
+        "This takes 1.5–2 hours because the dough is cold from the fridge.",
+        "Preheat your oven to 175°C (350°F) toward the end of proofing.",
+        "The dough should jiggle like jelly when the pan is tapped."
+      ],
+      "conceptsReinforced": ["fermentation"]
+    },
+    {
+      "id": "brioche-8",
+      "instruction": "Gently brush the top with egg wash (1 beaten egg + 1 tablespoon water). Bake at 175°C (350°F) until deep golden brown and the internal temperature reaches 88°C (190°F).",
+      "duration": 1800,
+      "timerLabel": "Bake",
+      "timerType": "countdown",
+      "tips": [
+        "The egg wash gives brioche its signature glossy, dark golden crust.",
+        "If the top browns too quickly, tent loosely with foil.",
+        "Let it cool in the pan for 10 minutes, then turn out onto a wire rack.",
+        "The crumb will be incredibly soft, rich, and slightly yellow from the eggs."
+      ],
+      "conceptsReinforced": ["scoring-and-crust"]
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "slug": "basic-focaccia",
+  "title": "Basic Focaccia",
+  "description": "A pillowy, olive-oil-rich flatbread that teaches you what high-hydration dough feels like. Perfect for beginners because it's forgiving and requires no shaping skill.",
+  "difficulty": "beginner",
+  "totalTime": "3.5 hours",
+  "activeTime": "25 minutes",
+  "servings": "1 sheet pan (about 8 pieces)",
+  "conceptsTaught": ["hydration", "fermentation", "enrichment"],
+  "ingredients": [
+    { "name": "bread flour", "amount": 500, "unit": "g", "bakersPercentage": 100 },
+    { "name": "warm water (38°C/100°F)", "amount": 400, "unit": "g", "bakersPercentage": 80 },
+    { "name": "extra virgin olive oil", "amount": 50, "unit": "g", "bakersPercentage": 10 },
+    { "name": "instant yeast", "amount": 7, "unit": "g", "bakersPercentage": 1.4 },
+    { "name": "fine salt", "amount": 10, "unit": "g", "bakersPercentage": 2 },
+    { "name": "flaky salt (for topping)", "amount": 5, "unit": "g" },
+    { "name": "olive oil (for pan and topping)", "amount": 30, "unit": "g" }
+  ],
+  "steps": [
+    {
+      "id": "focaccia-1",
+      "instruction": "In a large bowl, combine the bread flour, instant yeast, and fine salt. Add the warm water and 50g olive oil. Mix with a spatula or your hand until no dry flour remains.",
+      "tips": [
+        "The dough will look shaggy and very wet — this is normal for 80% hydration.",
+        "Water should be warm (about 38°C/100°F), not hot. Too hot kills the yeast."
+      ],
+      "conceptsReinforced": ["hydration"]
+    },
+    {
+      "id": "focaccia-2",
+      "instruction": "Cover the bowl with plastic wrap or a damp towel and let the dough rest. During this autolyse, the flour absorbs water and gluten begins developing on its own.",
+      "duration": 1800,
+      "timerLabel": "Autolyse rest",
+      "timerType": "countdown",
+      "tips": [
+        "This rest does the work for you — the flour hydrates and gluten strands start forming without any kneading.",
+        "You'll notice the dough looks smoother after the rest."
+      ],
+      "conceptsReinforced": ["hydration", "gluten-development"]
+    },
+    {
+      "id": "focaccia-3",
+      "instruction": "Perform a set of stretch-and-folds: with wet hands, grab one side of the dough, stretch it up, and fold it over to the opposite side. Rotate the bowl 90° and repeat. Do all four sides. That's one set. You'll do 4 sets total, resting between each.",
+      "duration": 900,
+      "timerLabel": "Stretch & fold interval",
+      "timerType": "interval",
+      "intervalCount": 4,
+      "tips": [
+        "Wet your hands before touching the dough to prevent sticking.",
+        "You'll feel the dough get smoother and more elastic with each set.",
+        "Each set only takes about 30 seconds of actual work — the rest is waiting."
+      ],
+      "conceptsReinforced": ["gluten-development"]
+    },
+    {
+      "id": "focaccia-4",
+      "instruction": "After the last fold, cover the bowl and let the dough bulk ferment at room temperature until roughly doubled in size. The dough should look puffy with visible bubbles on the surface.",
+      "duration": 3600,
+      "timerLabel": "Bulk fermentation",
+      "timerType": "countdown",
+      "tips": [
+        "This could take 1–2 hours depending on your kitchen temperature. The timer is a guide — watch the dough, not the clock.",
+        "In a warm kitchen (24°C+), it may be ready before the timer. In a cool kitchen, give it more time.",
+        "Look for: roughly doubled size, bubbles on surface, dough feels puffy and jiggly."
+      ],
+      "conceptsReinforced": ["fermentation"]
+    },
+    {
+      "id": "focaccia-5",
+      "instruction": "Generously oil your sheet pan with olive oil (about 2 tablespoons). Pour the dough onto the pan. Drizzle more olive oil on top and over your hands. Gently press and stretch the dough toward the edges. If it springs back, let it rest 10 minutes and try again.",
+      "tips": [
+        "Don't force it — the gluten needs to relax between stretches.",
+        "The olive oil is doing double duty: adding flavor and preventing sticking.",
+        "It's totally fine if it doesn't fill the pan perfectly on the first try."
+      ],
+      "conceptsReinforced": ["enrichment", "shaping"]
+    },
+    {
+      "id": "focaccia-6",
+      "instruction": "Cover the pan loosely with plastic wrap or a towel and let the dough proof until puffy and nearly filling the pan.",
+      "duration": 1800,
+      "timerLabel": "Final proof",
+      "timerType": "countdown",
+      "tips": [
+        "The dough should look bubbly, jiggly, and noticeably puffier.",
+        "While it proofs, preheat your oven to 220°C (425°F)."
+      ],
+      "conceptsReinforced": ["fermentation"]
+    },
+    {
+      "id": "focaccia-7",
+      "instruction": "With well-oiled fingers, press dimples firmly into the dough, pushing all the way down to the pan. Drizzle generously with olive oil and sprinkle with flaky salt. Add any toppings you like (rosemary, olives, cherry tomatoes).",
+      "tips": [
+        "Be assertive with the dimples — press all the way to the bottom.",
+        "The dimples create pockets that pool with olive oil as it bakes.",
+        "The oil and salt on top is what gives focaccia its incredible crust."
+      ],
+      "conceptsReinforced": ["shaping"]
+    },
+    {
+      "id": "focaccia-8",
+      "instruction": "Bake in the preheated oven (220°C/425°F) until deep golden brown on top and the edges are crispy.",
+      "duration": 1500,
+      "timerLabel": "Bake",
+      "timerType": "countdown",
+      "tips": [
+        "Don't pull it out too early — the deep golden color means maximum flavor.",
+        "It should take 20–25 minutes. Start checking at 20.",
+        "Let it cool in the pan for 5 minutes, then transfer to a wire rack."
+      ],
+      "conceptsReinforced": ["scoring-and-crust"]
+    }
+  ]
+}

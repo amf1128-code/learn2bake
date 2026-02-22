@@ -1,0 +1,152 @@
+{
+  "slug": "sourdough-boule",
+  "title": "Sourdough Boule",
+  "description": "A crusty, open-crumbed round loaf using wild yeast. This is the summit of bread baking — it brings together every concept: gluten development, fermentation, shaping, and scoring.",
+  "difficulty": "advanced",
+  "totalTime": "24 hours (including overnight cold proof)",
+  "activeTime": "45 minutes",
+  "servings": "1 large boule",
+  "conceptsTaught": ["gluten-development", "hydration", "fermentation", "shaping", "scoring-and-crust"],
+  "ingredients": [
+    { "name": "bread flour", "amount": 450, "unit": "g", "bakersPercentage": 90 },
+    { "name": "whole wheat flour", "amount": 50, "unit": "g", "bakersPercentage": 10 },
+    { "name": "water", "amount": 375, "unit": "g", "bakersPercentage": 75 },
+    { "name": "active sourdough starter", "amount": 100, "unit": "g", "bakersPercentage": 20 },
+    { "name": "fine salt", "amount": 10, "unit": "g", "bakersPercentage": 2 }
+  ],
+  "steps": [
+    {
+      "id": "sourdough-1",
+      "instruction": "Mix the flours and water in a large bowl until no dry spots remain. Do not add the starter or salt yet. Cover and let this autolyse rest.",
+      "duration": 2700,
+      "timerLabel": "Autolyse",
+      "timerType": "countdown",
+      "tips": [
+        "Autolyse without starter lets enzymes break down starch and begin gluten formation in a pure flour-water environment.",
+        "The dough will transform from shaggy to smoother during this rest.",
+        "This step gives you a huge head start on gluten development."
+      ],
+      "conceptsReinforced": ["hydration", "gluten-development"]
+    },
+    {
+      "id": "sourdough-2",
+      "instruction": "Add the sourdough starter and salt to the dough. Squeeze and fold the dough in the bowl until the starter and salt are fully incorporated (about 3–4 minutes of working).",
+      "tips": [
+        "The salt tightens the gluten — you'll feel the dough become more firm and elastic.",
+        "Adding starter after autolyse means fermentation starts when you want it to, not before.",
+        "The dough may feel rough at first but will smooth out during bulk fermentation."
+      ],
+      "conceptsReinforced": ["fermentation"]
+    },
+    {
+      "id": "sourdough-3",
+      "instruction": "Perform stretch-and-folds every 30 minutes for 6 sets. Each set: with wet hands, grab one side, stretch up, fold over. Rotate and repeat for all four sides. Between sets, keep the bowl covered.",
+      "duration": 1800,
+      "timerLabel": "Stretch & fold",
+      "timerType": "interval",
+      "intervalCount": 6,
+      "tips": [
+        "The dough builds more strength with each set — by set 4-5, it should resist stretching and feel springy.",
+        "Gentle hands. You're building structure, not degassing.",
+        "After the last set, let the dough continue bulk fermenting undisturbed."
+      ],
+      "conceptsReinforced": ["gluten-development"]
+    },
+    {
+      "id": "sourdough-4",
+      "instruction": "After the last fold, let the dough continue to bulk ferment undisturbed until it has increased by about 50–75% in volume. The dough should look domed on top, have visible bubbles on the sides, and feel airy when jiggled.",
+      "duration": 7200,
+      "timerLabel": "Remaining bulk fermentation",
+      "timerType": "countdown",
+      "tips": [
+        "This is highly temperature-dependent. At 24°C it might take 2 hours; at 20°C, it could be 3–4 hours.",
+        "Use the timer as a rough guide. Watch the dough, not the clock.",
+        "Under-fermented dough = dense crumb. Over-fermented = flat loaf. Aim for 50-75% rise."
+      ],
+      "conceptsReinforced": ["fermentation"]
+    },
+    {
+      "id": "sourdough-5",
+      "instruction": "Turn the dough out onto a lightly floured surface. Pre-shape by gently folding the edges toward the center, then flip seam-side down. Using a bench scraper or your hands, drag the dough toward you to create surface tension. Let it rest.",
+      "duration": 1200,
+      "timerLabel": "Bench rest",
+      "timerType": "countdown",
+      "tips": [
+        "Surface tension is everything — it's what lets the dough hold its shape in the oven.",
+        "The dough should look like a taut, smooth dome after pre-shaping.",
+        "Use minimal flour. Too much flour means no friction, which means no tension."
+      ],
+      "conceptsReinforced": ["shaping"]
+    },
+    {
+      "id": "sourdough-6",
+      "instruction": "Final shape: flip the dough over (seam up), fold the top down to center, fold the bottom up to overlap, fold the sides in, then roll tightly toward you to create a taut ball. Place seam-side up in a well-floured banneton or a towel-lined bowl dusted with rice flour.",
+      "tips": [
+        "Each fold adds another layer of tension. Tighter shaping = better oven spring.",
+        "The seam goes up in the banneton because you'll flip it out for baking.",
+        "Rice flour on the towel prevents sticking better than regular flour."
+      ],
+      "conceptsReinforced": ["shaping"]
+    },
+    {
+      "id": "sourdough-7",
+      "instruction": "Cover the banneton tightly and refrigerate overnight (12–16 hours). This cold retard slows fermentation, develops flavor, and firms the dough for easier scoring.",
+      "tips": [
+        "Cold retarding is what gives sourdough its complex, tangy flavor.",
+        "The cold dough will also score much more cleanly than warm dough.",
+        "You can bake it anytime from 12 to 24 hours in the fridge."
+      ],
+      "conceptsReinforced": ["fermentation"]
+    },
+    {
+      "id": "sourdough-8",
+      "instruction": "Preheat your oven to 250°C (480°F) with a Dutch oven inside for at least 45 minutes. The vessel must be screaming hot.",
+      "duration": 2700,
+      "timerLabel": "Oven preheat",
+      "timerType": "countdown",
+      "tips": [
+        "A Dutch oven traps steam, which is essential for oven spring and crust development.",
+        "If you don't have a Dutch oven, use an inverted sheet pan as a lid over a baking stone.",
+        "The extra-long preheat ensures the entire mass of the Dutch oven is at temperature."
+      ],
+      "conceptsReinforced": ["scoring-and-crust"]
+    },
+    {
+      "id": "sourdough-9",
+      "instruction": "Remove the dough from the fridge. Flip it out of the banneton onto parchment paper. Using a razor blade or very sharp knife (lame), score the top with a swift, confident slash about 1cm deep at a 30° angle.",
+      "tips": [
+        "Scoring controls where the bread expands in the oven — without it, the bread tears randomly.",
+        "One long slash works beautifully for a boule. You can get creative later.",
+        "Cold dough scores cleanly. Don't let it warm up before scoring.",
+        "Hold the blade at an angle to create an 'ear' — a flap that lifts and crisps during baking."
+      ],
+      "conceptsReinforced": ["scoring-and-crust"]
+    },
+    {
+      "id": "sourdough-10",
+      "instruction": "Carefully lower the scored dough (on parchment) into the hot Dutch oven. Cover with the lid and bake covered for 20 minutes, then remove the lid and continue baking until deep mahogany brown.",
+      "duration": 1200,
+      "timerLabel": "Covered bake",
+      "timerType": "countdown",
+      "tips": [
+        "The covered phase traps steam — this is when oven spring happens and the crust stays flexible enough to expand.",
+        "After removing the lid, the crust will begin to caramelize and crackle.",
+        "Be careful with the hot lid!"
+      ],
+      "conceptsReinforced": ["scoring-and-crust"]
+    },
+    {
+      "id": "sourdough-11",
+      "instruction": "Continue baking uncovered until the crust is deep mahogany brown. The internal temperature should reach 96°C (205°F).",
+      "duration": 1500,
+      "timerLabel": "Uncovered bake",
+      "timerType": "countdown",
+      "tips": [
+        "Go darker than you think. The flavor is in the crust, and light-colored sourdough is under-baked.",
+        "Listen for 'singing' — the crackling sound the crust makes when you pull it from the oven.",
+        "Let it cool on a wire rack for at least 1 hour. The crumb is still baking internally from residual heat."
+      ],
+      "conceptsReinforced": ["scoring-and-crust"]
+    }
+  ]
+}

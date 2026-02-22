@@ -1,0 +1,8 @@
+{
+  "slug": "gluten-development",
+  "name": "Gluten Development",
+  "description": "Gluten is the protein network that gives bread its structure. When flour meets water, two proteins (glutenin and gliadin) link together to form elastic, stretchy strands. Kneading, folding, and time all build this network. The stronger the gluten, the more gas the dough can trap, and the better the bread rises.",
+  "icon": "💪",
+  "order": 1,
+  "prerequisites": []
+}

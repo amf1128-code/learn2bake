@@ -1,0 +1,8 @@
+{
+  "slug": "shaping",
+  "name": "Shaping Techniques",
+  "description": "Shaping is how you transform a blob of fermented dough into its final form — a boule, a batard, rolls, or a loaf. Good shaping creates surface tension (a taut 'skin') that helps the bread hold its shape and rise upward rather than spreading flat. It's part technique, part feel.",
+  "icon": "🤲",
+  "order": 5,
+  "prerequisites": ["gluten-development", "fermentation"]
+}

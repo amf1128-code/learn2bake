@@ -1,0 +1,26 @@
+{
+  "slug": "lesson-scoring",
+  "title": "Scoring & Crust: The Final Touches",
+  "conceptSlug": "scoring-and-crust",
+  "order": 6,
+  "introduction": "The final lesson covers what happens in and around the oven. Scoring (slashing the dough) controls where the bread expands during oven spring — without it, the bread tears unpredictably. The crust forms through the Maillard reaction (browning of proteins) and caramelization (browning of sugars) at high heat.\n\nSteam plays a crucial role in the first minutes of baking: it keeps the crust flexible enough for the bread to expand fully before the crust sets. This is why professional bakers inject steam, and why home bakers use Dutch ovens.\n\nThis lesson brings together everything you've learned — you need good gluten, proper fermentation, and tight shaping to get great oven spring and a beautiful crust.",
+  "objectives": [
+    "Understand why bread is scored and how cuts affect oven spring",
+    "Learn basic scoring patterns (single slash, cross, wheat ear)",
+    "Understand the role of steam in crust formation",
+    "Bake a bread with intentional crust development"
+  ],
+  "recipeOptions": [
+    {
+      "recipeSlug": "sourdough-boule",
+      "whyThisRecipe": "Sourdough in a Dutch oven is THE recipe for learning about scoring and crust. The cold dough scores cleanly, the Dutch oven traps steam, and the result shows you exactly how scoring controls oven spring.",
+      "recommended": true
+    },
+    {
+      "recipeSlug": "sandwich-loaf",
+      "whyThisRecipe": "While a pan loaf doesn't require scoring, you can practice a single slash down the center. The crust development is simpler but still teaches about Maillard browning and oven temperature.",
+      "recommended": false
+    }
+  ],
+  "wrapUp": "You've now completed the full journey from flour to finished loaf. Scoring is where art meets science — each slash is both functional (controlling expansion) and aesthetic (creating beauty). The crust you've built is the result of everything coming together: strong gluten for structure, proper fermentation for gas, good shaping for tension, and the right oven environment for the Maillard reaction. You've learned to bake from scratch."
+}

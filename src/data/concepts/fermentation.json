@@ -1,0 +1,8 @@
+{
+  "slug": "fermentation",
+  "name": "Fermentation & Rise",
+  "description": "Yeast (or wild bacteria in sourdough) eats sugars in the dough and produces CO2 gas and flavor compounds. The gas gets trapped in the gluten network, making the dough rise. Temperature, time, and the amount of yeast all control the speed of fermentation. Slow, cold fermentation = more flavor. Fast, warm fermentation = quicker results.",
+  "icon": "🫧",
+  "order": 3,
+  "prerequisites": ["gluten-development"]
+}

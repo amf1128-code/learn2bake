@@ -1,0 +1,8 @@
+{
+  "slug": "hydration",
+  "name": "Hydration",
+  "description": "Hydration is the ratio of water to flour in a dough, expressed as a percentage. A 65% hydration dough is firm and easy to handle. An 80% dough is wet, sticky, and produces an open, airy crumb. Understanding hydration lets you predict how a dough will feel and behave before you even start mixing.",
+  "icon": "💧",
+  "order": 2,
+  "prerequisites": ["gluten-development"]
+}

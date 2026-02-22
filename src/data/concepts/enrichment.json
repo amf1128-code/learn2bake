@@ -1,0 +1,8 @@
+{
+  "slug": "enrichment",
+  "name": "Enrichment",
+  "description": "Enriched doughs contain fats (butter, oil), sugars, eggs, or dairy beyond the basic flour-water-salt-yeast formula. These additions make the bread softer, richer, and more tender, but they also slow down fermentation and can interfere with gluten development. Learning to work with enriched doughs means understanding how fat and sugar change the rules.",
+  "icon": "🧈",
+  "order": 4,
+  "prerequisites": ["gluten-development", "fermentation"]
+}
