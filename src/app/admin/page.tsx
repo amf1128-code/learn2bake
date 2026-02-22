@@ -1,12 +1,26 @@
-import Link from "next/link";
-import { getAllRecipes } from "@/lib/recipes";
-import { getAllLessons } from "@/lib/lessons";
+"use client";
 
-export const dynamic = "force-dynamic";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+
+const basePath = "/learn2bake";
 
 export default function AdminDashboard() {
-  const recipes = getAllRecipes();
-  const lessons = getAllLessons();
+  const [counts, setCounts] = useState<{
+    recipes: number;
+    lessons: number;
+  } | null>(null);
+
+  useEffect(() => {
+    Promise.all([
+      fetch(`${basePath}/api/recipes`).then((r) => r.json()),
+      fetch(`${basePath}/api/lessons`).then((r) => r.json()),
+    ])
+      .then(([recipes, lessons]) =>
+        setCounts({ recipes: recipes.length, lessons: lessons.length })
+      )
+      .catch(() => {});
+  }, []);
 
   return (
     <div>
@@ -19,7 +33,7 @@ export default function AdminDashboard() {
         >
           <h2 className="font-semibold text-lg mb-1">Recipes</h2>
           <p className="text-3xl font-bold text-orange-700 mb-2">
-            {recipes.length}
+            {counts?.recipes ?? "—"}
           </p>
           <p className="text-sm text-gray-500">
             Create, edit, and manage recipes with steps, timers, and photos.
@@ -32,13 +46,20 @@ export default function AdminDashboard() {
         >
           <h2 className="font-semibold text-lg mb-1">Curriculum</h2>
           <p className="text-3xl font-bold text-orange-700 mb-2">
-            {lessons.length} lessons
+            {counts !== null ? `${counts.lessons} lessons` : "—"}
           </p>
           <p className="text-sm text-gray-500">
             Reorder lessons, edit objectives, and assign recipes to each step.
           </p>
         </Link>
       </div>
+
+      {counts === null && (
+        <p className="text-sm text-gray-400 mt-6">
+          Admin requires running locally with{" "}
+          <code className="bg-gray-100 px-1 rounded">npm run dev</code>.
+        </p>
+      )}
     </div>
   );
 }

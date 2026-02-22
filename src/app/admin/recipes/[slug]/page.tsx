@@ -3,7 +3,11 @@ import { getRecipe } from "@/lib/recipes";
 import { getAllConcepts } from "@/lib/concepts";
 import RecipeEditor from "./RecipeEditor";
 
-export const dynamic = "force-dynamic";
+// Returns [] so no pages are pre-generated in static export.
+// The page only runs during local dev (npm run dev).
+export function generateStaticParams() {
+  return [];
+}
 
 export default async function EditRecipePage({
   params,

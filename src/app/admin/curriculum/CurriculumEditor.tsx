@@ -1,24 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Lesson, RecipeOption } from "@/types/lesson";
 import { Recipe } from "@/types/recipe";
 import { Concept } from "@/types/concept";
 
 const basePath = "/learn2bake";
 
-interface Props {
-  initialLessons: Lesson[];
-  recipes: Recipe[];
-  concepts: Concept[];
-}
+export default function CurriculumEditor() {
+  const [lessons, setLessons] = useState<Lesson[]>([]);
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [concepts, setConcepts] = useState<Concept[]>([]);
+  const [loading, setLoading] = useState(true);
 
-export default function CurriculumEditor({
-  initialLessons,
-  recipes,
-  concepts,
-}: Props) {
-  const [lessons, setLessons] = useState<Lesson[]>(initialLessons);
+  useEffect(() => {
+    Promise.all([
+      fetch(`${basePath}/api/lessons`).then((r) => r.json()),
+      fetch(`${basePath}/api/recipes`).then((r) => r.json()),
+      fetch(`${basePath}/api/concepts`).then((r) => r.json()),
+    ])
+      .then(([l, r, c]) => {
+        setLessons(l);
+        setRecipes(r);
+        setConcepts(c);
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
   const [editingSlug, setEditingSlug] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [status, setStatus] = useState<string | null>(null);
@@ -149,6 +157,15 @@ export default function CurriculumEditor({
     updateRecipeOptions(
       lessonSlug,
       lesson.recipeOptions.filter((_, idx) => idx !== i)
+    );
+  }
+
+  if (loading) {
+    return (
+      <div className="space-y-6">
+        <h1 className="text-2xl font-bold">Curriculum</h1>
+        <p className="text-gray-400 text-sm">Loading...</p>
+      </div>
     );
   }
 

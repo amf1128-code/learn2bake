@@ -1,8 +1,11 @@
-import { getAllConcepts } from "@/lib/concepts";
+"use client";
+
+import { useState, useEffect } from "react";
 import RecipeEditor from "../[slug]/RecipeEditor";
+import { Concept } from "@/types/concept";
 import { Recipe } from "@/types/recipe";
 
-export const dynamic = "force-dynamic";
+const basePath = "/learn2bake";
 
 const emptyRecipe: Recipe = {
   slug: "",
@@ -18,7 +21,14 @@ const emptyRecipe: Recipe = {
 };
 
 export default function NewRecipePage() {
-  const concepts = getAllConcepts();
+  const [concepts, setConcepts] = useState<Concept[]>([]);
+
+  useEffect(() => {
+    fetch(`${basePath}/api/concepts`)
+      .then((r) => r.json())
+      .then(setConcepts)
+      .catch(() => {});
+  }, []);
 
   return <RecipeEditor recipe={emptyRecipe} concepts={concepts} isNew={true} />;
 }
