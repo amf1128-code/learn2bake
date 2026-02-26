@@ -5,8 +5,9 @@ import { getRecipesByConcept } from "@/lib/recipes";
 import { getLessonByConcept } from "@/lib/lessons";
 import { RecipeCard } from "@/components/recipes/RecipeCard";
 
-export function generateStaticParams() {
-  return getAllConcepts().map((c) => ({ slug: c.slug }));
+export async function generateStaticParams() {
+  const concepts = await getAllConcepts();
+  return concepts.map((c) => ({ slug: c.slug }));
 }
 
 export default async function ConceptDetailPage({
@@ -15,12 +16,12 @@ export default async function ConceptDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const concept = getConcept(slug);
+  const concept = await getConcept(slug);
   if (!concept) notFound();
 
-  const recipes = getRecipesByConcept(concept.slug);
-  const lesson = getLessonByConcept(concept.slug);
-  const allConcepts = getAllConcepts();
+  const recipes = await getRecipesByConcept(concept.slug);
+  const lesson = await getLessonByConcept(concept.slug);
+  const allConcepts = await getAllConcepts();
   const prereqs = concept.prerequisites
     .map((p) => allConcepts.find((c) => c.slug === p))
     .filter(Boolean);

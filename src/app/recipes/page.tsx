@@ -1,8 +1,8 @@
 import { getAllRecipes } from "@/lib/recipes";
 import { RecipeCard } from "@/components/recipes/RecipeCard";
 
-export default function RecipesPage() {
-  const recipes = getAllRecipes();
+export default async function RecipesPage() {
+  const recipes = await getAllRecipes();
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10">

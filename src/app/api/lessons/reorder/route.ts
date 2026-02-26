@@ -6,10 +6,10 @@ export async function PUT(request: Request) {
   const { slugs }: { slugs: string[] } = await request.json();
 
   for (let i = 0; i < slugs.length; i++) {
-    const lesson = readJsonFile<Lesson>("lessons", slugs[i]);
+    const lesson = await readJsonFile<Lesson>("lessons", slugs[i]);
     if (lesson) {
       lesson.order = i + 1;
-      writeJsonFile("lessons", slugs[i], lesson);
+      await writeJsonFile("lessons", slugs[i], lesson);
     }
   }
 

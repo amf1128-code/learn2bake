@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
+import { supabase } from "@/lib/supabase";
 
 export async function POST(request: Request) {
   const formData = await request.formData();
@@ -11,19 +10,25 @@ export async function POST(request: Request) {
   }
 
   const bytes = await file.arrayBuffer();
-  const buffer = Buffer.from(bytes);
+  const ext = file.name.split(".").pop() || "jpg";
+  const filename = `steps/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
 
-  const ext = path.extname(file.name) || ".jpg";
-  const filename = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}${ext}`;
-  const uploadDir = path.join(process.cwd(), "public/images/steps");
+  const { error } = await supabase.storage
+    .from("images")
+    .upload(filename, bytes, {
+      contentType: file.type,
+      upsert: false,
+    });
 
-  if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir, { recursive: true });
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  fs.writeFileSync(path.join(uploadDir, filename), buffer);
+  const { data: urlData } = supabase.storage
+    .from("images")
+    .getPublicUrl(filename);
 
   return NextResponse.json({
-    path: `/images/steps/${filename}`,
+    path: urlData.publicUrl,
   });
 }

@@ -5,7 +5,6 @@ import { Lesson, RecipeOption } from "@/types/lesson";
 import { Recipe } from "@/types/recipe";
 import { Concept } from "@/types/concept";
 
-const basePath = "/learn2bake";
 
 export default function CurriculumEditor() {
   const [lessons, setLessons] = useState<Lesson[]>([]);
@@ -15,9 +14,9 @@ export default function CurriculumEditor() {
 
   useEffect(() => {
     Promise.all([
-      fetch(`${basePath}/api/lessons`).then((r) => r.json()),
-      fetch(`${basePath}/api/recipes`).then((r) => r.json()),
-      fetch(`${basePath}/api/concepts`).then((r) => r.json()),
+      fetch(`/api/lessons`).then((r) => r.json()),
+      fetch(`/api/recipes`).then((r) => r.json()),
+      fetch(`/api/concepts`).then((r) => r.json()),
     ])
       .then(([l, r, c]) => {
         setLessons(l);
@@ -60,7 +59,7 @@ export default function CurriculumEditor() {
     setLessons(reordered);
 
     // Save reorder
-    await fetch(`${basePath}/api/lessons/reorder`, {
+    await fetch(`/api/lessons/reorder`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ slugs: reordered.map((l) => l.slug) }),
@@ -73,7 +72,7 @@ export default function CurriculumEditor() {
     setSaving(true);
     setStatus(null);
     try {
-      const res = await fetch(`${basePath}/api/lessons/${lesson.slug}`, {
+      const res = await fetch(`/api/lessons/${lesson.slug}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(lesson),
@@ -93,7 +92,7 @@ export default function CurriculumEditor() {
     if (!newLesson.slug || !newLesson.title) return;
     setSaving(true);
     try {
-      const res = await fetch(`${basePath}/api/lessons`, {
+      const res = await fetch(`/api/lessons`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newLesson),
@@ -125,7 +124,7 @@ export default function CurriculumEditor() {
   // --- Delete lesson ---
   async function deleteLesson(slug: string) {
     if (!confirm("Delete this lesson?")) return;
-    const res = await fetch(`${basePath}/api/lessons/${slug}`, {
+    const res = await fetch(`/api/lessons/${slug}`, {
       method: "DELETE",
     });
     if (res.ok) {

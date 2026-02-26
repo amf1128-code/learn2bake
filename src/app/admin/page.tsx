@@ -3,8 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
-const basePath = "/learn2bake";
-
 export default function AdminDashboard() {
   const [counts, setCounts] = useState<{
     recipes: number;
@@ -13,8 +11,8 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     Promise.all([
-      fetch(`${basePath}/api/recipes`).then((r) => r.json()),
-      fetch(`${basePath}/api/lessons`).then((r) => r.json()),
+      fetch("/api/recipes").then((r) => r.json()),
+      fetch("/api/lessons").then((r) => r.json()),
     ])
       .then(([recipes, lessons]) =>
         setCounts({ recipes: recipes.length, lessons: lessons.length })
@@ -56,8 +54,7 @@ export default function AdminDashboard() {
 
       {counts === null && (
         <p className="text-sm text-gray-400 mt-6">
-          Admin requires running locally with{" "}
-          <code className="bg-gray-100 px-1 rounded">npm run dev</code>.
+          Loading dashboard data...
         </p>
       )}
     </div>

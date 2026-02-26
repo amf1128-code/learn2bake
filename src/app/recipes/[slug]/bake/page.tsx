@@ -2,8 +2,9 @@ import { notFound } from "next/navigation";
 import { getAllRecipes, getRecipe } from "@/lib/recipes";
 import { BakingSession } from "@/components/baking/BakingSession";
 
-export function generateStaticParams() {
-  return getAllRecipes().map((r) => ({ slug: r.slug }));
+export async function generateStaticParams() {
+  const recipes = await getAllRecipes();
+  return recipes.map((r) => ({ slug: r.slug }));
 }
 
 export default async function BakePage({
@@ -12,7 +13,7 @@ export default async function BakePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const recipe = getRecipe(slug);
+  const recipe = await getRecipe(slug);
   if (!recipe) notFound();
 
   return <BakingSession recipe={recipe} />;

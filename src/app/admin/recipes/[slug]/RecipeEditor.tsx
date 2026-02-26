@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { Recipe, RecipeStep, Ingredient, Difficulty } from "@/types/recipe";
 import { Concept } from "@/types/concept";
 
-const basePath = "/learn2bake";
 
 interface Props {
   recipe: Recipe;
@@ -98,7 +97,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
   async function uploadImage(stepIndex: number, file: File) {
     const formData = new FormData();
     formData.append("file", file);
-    const res = await fetch(`${basePath}/api/upload`, {
+    const res = await fetch(`/api/upload`, {
       method: "POST",
       body: formData,
     });
@@ -113,8 +112,8 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
     setError(null);
     try {
       const url = isNew
-        ? `${basePath}/api/recipes`
-        : `${basePath}/api/recipes/${recipe.slug}`;
+        ? `/api/recipes`
+        : `/api/recipes/${recipe.slug}`;
       const method = isNew ? "POST" : "PUT";
       const res = await fetch(url, {
         method,
@@ -139,7 +138,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
   // --- Delete ---
   async function deleteRecipe() {
     if (!confirm("Delete this recipe? This cannot be undone.")) return;
-    const res = await fetch(`${basePath}/api/recipes/${recipe.slug}`, {
+    const res = await fetch(`/api/recipes/${recipe.slug}`, {
       method: "DELETE",
     });
     if (res.ok) {
@@ -650,7 +649,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                       {step.image && (
                         <div className="mb-2 relative inline-block">
                           <img
-                            src={`${basePath}${step.image}`}
+                            src={step.image}
                             alt="Step"
                             className="w-40 h-28 object-cover rounded border"
                           />

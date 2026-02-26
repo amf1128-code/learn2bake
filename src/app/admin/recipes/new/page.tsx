@@ -5,8 +5,6 @@ import RecipeEditor from "../[slug]/RecipeEditor";
 import { Concept } from "@/types/concept";
 import { Recipe } from "@/types/recipe";
 
-const basePath = "/learn2bake";
-
 const emptyRecipe: Recipe = {
   slug: "",
   title: "",
@@ -24,7 +22,7 @@ export default function NewRecipePage() {
   const [concepts, setConcepts] = useState<Concept[]>([]);
 
   useEffect(() => {
-    fetch(`${basePath}/api/concepts`)
+    fetch("/api/concepts")
       .then((r) => r.json())
       .then(setConcepts)
       .catch(() => {});

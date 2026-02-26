@@ -5,13 +5,11 @@ import Link from "next/link";
 import { Recipe } from "@/types/recipe";
 import { DifficultyBadge } from "@/components/recipes/DifficultyBadge";
 
-const basePath = "/learn2bake";
-
 export default function AdminRecipesPage() {
   const [recipes, setRecipes] = useState<Recipe[] | null>(null);
 
   useEffect(() => {
-    fetch(`${basePath}/api/recipes`)
+    fetch("/api/recipes")
       .then((r) => r.json())
       .then(setRecipes)
       .catch(() => setRecipes([]));

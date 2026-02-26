@@ -5,8 +5,9 @@ import { getConcept } from "@/lib/concepts";
 import { getRecipe } from "@/lib/recipes";
 import { DifficultyBadge } from "@/components/recipes/DifficultyBadge";
 
-export function generateStaticParams() {
-  return getAllLessons().map((l) => ({ slug: l.slug }));
+export async function generateStaticParams() {
+  const lessons = await getAllLessons();
+  return lessons.map((l) => ({ slug: l.slug }));
 }
 
 export default async function LessonDetailPage({
@@ -15,10 +16,16 @@ export default async function LessonDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const lesson = getLesson(slug);
+  const lesson = await getLesson(slug);
   if (!lesson) notFound();
 
-  const concept = getConcept(lesson.conceptSlug);
+  const concept = await getConcept(lesson.conceptSlug);
+  const recipeOptionsWithData = await Promise.all(
+    lesson.recipeOptions.map(async (option) => ({
+      option,
+      recipe: await getRecipe(option.recipeSlug),
+    }))
+  );
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
@@ -62,8 +69,7 @@ export default async function LessonDetailPage({
           Choose Your Recipe
         </h2>
         <div className="space-y-3">
-          {lesson.recipeOptions.map((option) => {
-            const recipe = getRecipe(option.recipeSlug);
+          {recipeOptionsWithData.map(({ option, recipe }) => {
             if (!recipe) return null;
 
             return (

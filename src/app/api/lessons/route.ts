@@ -3,9 +3,8 @@ import { readJsonDir, writeJsonFile } from "@/lib/data";
 import { Lesson } from "@/types/lesson";
 
 export async function GET() {
-  const lessons = readJsonDir<Lesson>("lessons").sort(
-    (a, b) => a.order - b.order
-  );
+  const lessons = await readJsonDir<Lesson>("lessons");
+  lessons.sort((a, b) => a.order - b.order);
   return NextResponse.json(lessons);
 }
 
@@ -16,7 +15,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "slug is required" }, { status: 400 });
   }
 
-  const existing = readJsonDir<Lesson>("lessons");
+  const existing = await readJsonDir<Lesson>("lessons");
   if (existing.some((l) => l.slug === lesson.slug)) {
     return NextResponse.json(
       { error: "Lesson with this slug already exists" },
@@ -24,6 +23,6 @@ export async function POST(request: Request) {
     );
   }
 
-  writeJsonFile("lessons", lesson.slug, lesson);
+  await writeJsonFile("lessons", lesson.slug, lesson);
   return NextResponse.json(lesson, { status: 201 });
 }

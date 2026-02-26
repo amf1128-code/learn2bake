@@ -7,7 +7,7 @@ export async function GET(
   { params }: { params: Promise<{ slug: string }> }
 ) {
   const { slug } = await params;
-  const recipe = readJsonFile<Recipe>("recipes", slug);
+  const recipe = await readJsonFile<Recipe>("recipes", slug);
   if (!recipe) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
@@ -20,7 +20,7 @@ export async function PUT(
 ) {
   const { slug } = await params;
   const recipe: Recipe = await request.json();
-  writeJsonFile("recipes", slug, recipe);
+  await writeJsonFile("recipes", slug, recipe);
   return NextResponse.json(recipe);
 }
 
@@ -29,7 +29,7 @@ export async function DELETE(
   { params }: { params: Promise<{ slug: string }> }
 ) {
   const { slug } = await params;
-  const deleted = deleteJsonFile("recipes", slug);
+  const deleted = await deleteJsonFile("recipes", slug);
   if (!deleted) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }

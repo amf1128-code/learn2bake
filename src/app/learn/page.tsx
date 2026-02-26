@@ -2,8 +2,13 @@ import Link from "next/link";
 import { getAllLessons } from "@/lib/lessons";
 import { getConcept } from "@/lib/concepts";
 
-export default function LearnPage() {
-  const lessons = getAllLessons();
+export default async function LearnPage() {
+  const lessons = await getAllLessons();
+  const conceptMap = new Map(
+    await Promise.all(
+      lessons.map(async (l) => [l.conceptSlug, await getConcept(l.conceptSlug)] as const)
+    )
+  );
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
@@ -15,7 +20,7 @@ export default function LearnPage() {
 
       <div className="space-y-4">
         {lessons.map((lesson, index) => {
-          const concept = getConcept(lesson.conceptSlug);
+          const concept = conceptMap.get(lesson.conceptSlug);
 
           return (
             <Link

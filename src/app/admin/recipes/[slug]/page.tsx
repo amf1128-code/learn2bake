@@ -15,10 +15,10 @@ export default async function EditRecipePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const recipe = getRecipe(slug);
+  const recipe = await getRecipe(slug);
   if (!recipe) notFound();
 
-  const concepts = getAllConcepts();
+  const concepts = await getAllConcepts();
 
   return <RecipeEditor recipe={recipe} concepts={concepts} isNew={false} />;
 }
