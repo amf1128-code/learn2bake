@@ -441,15 +441,13 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
           </button>
         </div>
         <div className="space-y-2">
-          {recipe.ingredients.length > 0 && (
-            <div className="flex items-center gap-2 px-1 pb-1 border-b border-border">
-              <span className="flex-1 text-xs font-medium text-muted uppercase tracking-wide">Name</span>
-              <span className="w-20 text-xs font-medium text-muted uppercase tracking-wide">Amount</span>
-              <span className="w-16 text-xs font-medium text-muted uppercase tracking-wide">Unit</span>
-              <span className="w-20 text-xs font-medium text-muted uppercase tracking-wide">Baker&apos;s %</span>
-              <span className="w-5" />
-            </div>
-          )}
+          <div className="flex items-center gap-2 px-1 pb-1 border-b border-border">
+            <span className="flex-1 text-xs font-medium text-muted uppercase tracking-wide">Name</span>
+            <span className="w-20 text-xs font-medium text-muted uppercase tracking-wide">Amount</span>
+            <span className="w-16 text-xs font-medium text-muted uppercase tracking-wide">Unit</span>
+            <span className="w-20 text-xs font-medium text-muted uppercase tracking-wide">Baker&apos;s %</span>
+            <span className="w-5" />
+          </div>
           {recipe.ingredients.map((ing, i) => {
             const hasBase = recipe.ingredients.some((x) => x.bakersPercentage === 100);
             const isBase = ing.bakersPercentage === 100;
