@@ -11,7 +11,8 @@ export async function POST(request: Request) {
 
   const bytes = await file.arrayBuffer();
   const ext = file.name.split(".").pop() || "jpg";
-  const filename = `steps/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+  const folder = (formData.get("folder") as string) || "steps";
+  const filename = `${folder}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
 
   const { error } = await supabase.storage
     .from("images")
