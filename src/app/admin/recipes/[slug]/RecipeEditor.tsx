@@ -26,6 +26,23 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
   }
 
   // --- Ingredients ---
+  function recalcBakersPercentages(ingredients: Ingredient[]): Ingredient[] {
+    const baseIdx = ingredients.findIndex((ing) => ing.bakersPercentage === 100);
+    if (baseIdx === -1 || ingredients[baseIdx].amount <= 0) return ingredients;
+    const baseAmount = ingredients[baseIdx].amount;
+    const baseUnit = ingredients[baseIdx].unit;
+    return ingredients.map((ing, i) => {
+      if (i === baseIdx) return ing;
+      if (ing.unit === baseUnit && ing.amount > 0) {
+        return {
+          ...ing,
+          bakersPercentage: Math.round((ing.amount / baseAmount) * 1000) / 10,
+        };
+      }
+      return { ...ing, bakersPercentage: undefined };
+    });
+  }
+
   function addIngredient() {
     update({
       ingredients: [
@@ -36,13 +53,33 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
   }
 
   function updateIngredient(i: number, patch: Partial<Ingredient>) {
-    const ingredients = [...recipe.ingredients];
+    let ingredients = [...recipe.ingredients];
     ingredients[i] = { ...ingredients[i], ...patch };
+    if ("amount" in patch || "unit" in patch) {
+      ingredients = recalcBakersPercentages(ingredients);
+    }
     update({ ingredients });
   }
 
   function removeIngredient(i: number) {
-    update({ ingredients: recipe.ingredients.filter((_, idx) => idx !== i) });
+    const wasBase = recipe.ingredients[i].bakersPercentage === 100;
+    let ingredients = recipe.ingredients.filter((_, idx) => idx !== i);
+    if (wasBase) {
+      ingredients = ingredients.map((ing) => ({ ...ing, bakersPercentage: undefined }));
+    }
+    update({ ingredients });
+  }
+
+  function setBaseIngredient(i: number) {
+    const isCurrentBase = recipe.ingredients[i].bakersPercentage === 100;
+    let ingredients = recipe.ingredients.map((ing, idx) => ({
+      ...ing,
+      bakersPercentage: idx === i && !isCurrentBase ? 100 : undefined,
+    }));
+    if (!isCurrentBase) {
+      ingredients = recalcBakersPercentages(ingredients);
+    }
+    update({ ingredients });
   }
 
   // --- Steps ---
@@ -395,55 +432,92 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
           </button>
         </div>
         <div className="space-y-2">
-          {recipe.ingredients.map((ing, i) => (
-            <div key={i} className="flex items-center gap-2">
-              <input
-                type="text"
-                value={ing.name}
-                onChange={(e) =>
-                  updateIngredient(i, { name: e.target.value })
-                }
-                placeholder="Name"
-                className="flex-1 border border-border rounded px-2 py-1.5 text-sm"
-              />
-              <input
-                type="number"
-                value={ing.amount}
-                onChange={(e) =>
-                  updateIngredient(i, { amount: Number(e.target.value) })
-                }
-                className="w-20 border border-border rounded px-2 py-1.5 text-sm"
-              />
-              <input
-                type="text"
-                value={ing.unit}
-                onChange={(e) =>
-                  updateIngredient(i, { unit: e.target.value })
-                }
-                placeholder="unit"
-                className="w-16 border border-border rounded px-2 py-1.5 text-sm"
-              />
-              <input
-                type="number"
-                value={ing.bakersPercentage ?? ""}
-                onChange={(e) =>
-                  updateIngredient(i, {
-                    bakersPercentage: e.target.value
-                      ? Number(e.target.value)
-                      : undefined,
-                  })
-                }
-                placeholder="%"
-                className="w-16 border border-border rounded px-2 py-1.5 text-sm"
-              />
-              <button
-                onClick={() => removeIngredient(i)}
-                className="text-red-400 hover:text-red-600 text-sm px-1"
-              >
-                &times;
-              </button>
+          {recipe.ingredients.length > 0 && (
+            <div className="flex items-center gap-2 px-1 pb-1 border-b border-border">
+              <span className="flex-1 text-xs font-medium text-muted uppercase tracking-wide">Name</span>
+              <span className="w-20 text-xs font-medium text-muted uppercase tracking-wide">Amount</span>
+              <span className="w-16 text-xs font-medium text-muted uppercase tracking-wide">Unit</span>
+              <span className="w-20 text-xs font-medium text-muted uppercase tracking-wide">Baker&apos;s %</span>
+              <span className="w-5" />
             </div>
-          ))}
+          )}
+          {recipe.ingredients.map((ing, i) => {
+            const hasBase = recipe.ingredients.some((x) => x.bakersPercentage === 100);
+            const isBase = ing.bakersPercentage === 100;
+            return (
+              <div key={i} className="flex items-center gap-2">
+                <input
+                  type="text"
+                  value={ing.name}
+                  onChange={(e) =>
+                    updateIngredient(i, { name: e.target.value })
+                  }
+                  placeholder="Name"
+                  className="flex-1 border border-border rounded px-2 py-1.5 text-sm"
+                />
+                <input
+                  type="number"
+                  value={ing.amount}
+                  onChange={(e) =>
+                    updateIngredient(i, { amount: Number(e.target.value) })
+                  }
+                  className="w-20 border border-border rounded px-2 py-1.5 text-sm"
+                />
+                <input
+                  type="text"
+                  value={ing.unit}
+                  onChange={(e) =>
+                    updateIngredient(i, { unit: e.target.value })
+                  }
+                  placeholder="unit"
+                  className="w-16 border border-border rounded px-2 py-1.5 text-sm"
+                />
+                <div className="w-20">
+                  {isBase ? (
+                    <button
+                      onClick={() => setBaseIngredient(i)}
+                      className="w-full text-xs font-medium text-amber-700 bg-amber-50 border border-amber-200 rounded px-1.5 py-1 hover:bg-amber-100 text-center"
+                      title="Base ingredient (100%) — click to unset"
+                    >
+                      ★ 100%
+                    </button>
+                  ) : ing.bakersPercentage !== undefined ? (
+                    <span className="block text-sm text-foreground px-2 py-1.5 text-right">
+                      {ing.bakersPercentage}%
+                    </span>
+                  ) : !hasBase ? (
+                    <button
+                      onClick={() => setBaseIngredient(i)}
+                      className="w-full text-xs text-muted hover:text-accent py-1 text-center"
+                      title="Set as base ingredient (100%) for baker's percentages"
+                    >
+                      set base
+                    </button>
+                  ) : (
+                    <span className="block text-sm text-muted px-2 py-1.5 text-center">
+                      —
+                    </span>
+                  )}
+                </div>
+                <button
+                  onClick={() => removeIngredient(i)}
+                  className="text-red-400 hover:text-red-600 text-sm px-1"
+                >
+                  &times;
+                </button>
+              </div>
+            );
+          })}
+          {recipe.ingredients.some((ing) => ing.bakersPercentage === 100) && (
+            <p className="text-xs text-muted mt-2">
+              Percentages auto-update relative to the ★ base ingredient.
+            </p>
+          )}
+          {recipe.ingredients.length > 0 && !recipe.ingredients.some((ing) => ing.bakersPercentage === 100) && (
+            <p className="text-xs text-muted mt-2">
+              Click &quot;set base&quot; on the flour to enable auto-calculated baker&apos;s percentages.
+            </p>
+          )}
         </div>
       </section>
 
