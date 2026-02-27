@@ -102,6 +102,7 @@ export function BakingSession({ recipe, returnUrl }: BakingSessionProps) {
           <TimerDisplay
             timer={state.timer}
             label={currentStep.timerLabel}
+            dispatch={dispatch}
           />
           <TimerControls timer={state.timer} dispatch={dispatch} />
         </div>

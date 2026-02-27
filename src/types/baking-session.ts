@@ -25,4 +25,6 @@ export type BakingAction =
   | { type: "RESUME_TIMER" }
   | { type: "COMPLETE_INTERVAL" }
   | { type: "SKIP_TIMER" }
+  | { type: "RESET_TIMER" }
+  | { type: "GO_TO_INTERVAL"; round: number }
   | { type: "RESET" };

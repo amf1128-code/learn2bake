@@ -16,10 +16,16 @@ export function TimerControls({ timer, dispatch }: TimerControlsProps) {
 
   if (isComplete) {
     return (
-      <div className="flex justify-center">
-        <span className="text-sm text-accent font-medium">
+      <div className="flex justify-center gap-3">
+        <span className="text-sm text-accent font-medium py-2.5">
           Timer complete!
         </span>
+        <button
+          onClick={() => dispatch({ type: "RESET_TIMER" })}
+          className="px-4 py-2.5 text-sm text-muted hover:text-foreground transition-colors"
+        >
+          Reset
+        </button>
       </div>
     );
   }
