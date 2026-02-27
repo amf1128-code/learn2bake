@@ -55,29 +55,29 @@ export default function SiteSettingsPage() {
   }
 
   if (loading) {
-    return <p className="text-sm text-gray-400">Loading...</p>;
+    return <p className="text-sm text-muted">Loading...</p>;
   }
 
   return (
     <div className="space-y-8">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Site Settings</h1>
+        <h1 className="font-serif text-2xl">Site Settings</h1>
         <div className="flex items-center gap-3">
           {saved && <span className="text-sm text-green-600">Saved</span>}
           {error && <span className="text-sm text-red-600">{error}</span>}
           <button
             onClick={save}
             disabled={saving}
-            className="px-4 py-2 bg-orange-700 text-white rounded-lg text-sm font-medium hover:bg-orange-800 disabled:opacity-50"
+            className="px-4 py-2 bg-foreground text-background rounded-lg text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
           >
             {saving ? "Saving..." : "Save"}
           </button>
         </div>
       </div>
 
-      <section className="bg-white border border-gray-200 rounded-lg p-6">
+      <section className="bg-surface border border-border rounded-lg p-6">
         <h2 className="font-semibold mb-4">Homepage Hero Image</h2>
-        <p className="text-sm text-gray-500 mb-4">
+        <p className="text-sm text-muted mb-4">
           This image appears as the full-width background behind the hero text on the homepage.
           Use a wide, high-resolution photo (recommended: at least 1600×600px).
         </p>
@@ -88,7 +88,7 @@ export default function SiteSettingsPage() {
               <img
                 src={heroImage}
                 alt="Hero preview"
-                className="w-full max-w-2xl h-48 object-cover rounded border"
+                className="w-full max-w-2xl h-48 object-cover rounded border border-border"
               />
               <button
                 onClick={() => { setHeroImage(undefined); setSaved(false); }}
@@ -97,11 +97,11 @@ export default function SiteSettingsPage() {
                 &times;
               </button>
             </div>
-            <p className="text-xs text-gray-400 mt-2">Current hero image</p>
+            <p className="text-xs text-muted mt-2">Current hero image</p>
           </div>
         ) : (
-          <div className="mb-4 w-full max-w-2xl h-32 bg-gray-100 rounded border-2 border-dashed border-gray-300 flex items-center justify-center">
-            <span className="text-sm text-gray-400">No hero image set</span>
+          <div className="mb-4 w-full max-w-2xl h-32 bg-background rounded border-2 border-dashed border-border flex items-center justify-center">
+            <span className="text-sm text-muted">No hero image set</span>
           </div>
         )}
 
@@ -117,7 +117,7 @@ export default function SiteSettingsPage() {
             className="text-sm"
           />
           {uploading && (
-            <span className="text-sm text-gray-400">Uploading...</span>
+            <span className="text-sm text-muted">Uploading...</span>
           )}
         </div>
       </section>

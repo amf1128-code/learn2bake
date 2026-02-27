@@ -162,8 +162,8 @@ export default function CurriculumEditor() {
   if (loading) {
     return (
       <div className="space-y-6">
-        <h1 className="text-2xl font-bold">Curriculum</h1>
-        <p className="text-gray-400 text-sm">Loading...</p>
+        <h1 className="font-serif text-2xl">Curriculum</h1>
+        <p className="text-muted text-sm">Loading...</p>
       </div>
     );
   }
@@ -171,14 +171,14 @@ export default function CurriculumEditor() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Curriculum</h1>
+        <h1 className="font-serif text-2xl">Curriculum</h1>
         <div className="flex items-center gap-3">
           {status && (
             <span className="text-sm text-green-600">{status}</span>
           )}
           <button
             onClick={() => setShowNewForm(true)}
-            className="px-4 py-2 bg-orange-700 text-white rounded-lg text-sm font-medium hover:bg-orange-800"
+            className="px-4 py-2 bg-foreground text-background rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
           >
             + New Lesson
           </button>
@@ -196,22 +196,22 @@ export default function CurriculumEditor() {
           return (
             <div
               key={lesson.slug}
-              className="bg-white border border-gray-200 rounded-lg overflow-hidden"
+              className="bg-surface border border-border rounded-lg overflow-hidden"
             >
               {/* Lesson header */}
-              <div className="flex items-center gap-3 px-4 py-3 bg-gray-50">
+              <div className="flex items-center gap-3 px-4 py-3 bg-background">
                 <div className="flex flex-col gap-0.5">
                   <button
                     onClick={() => moveLesson(i, -1)}
                     disabled={i === 0}
-                    className="text-gray-400 hover:text-gray-600 disabled:opacity-30 text-xs leading-none"
+                    className="text-muted hover:text-foreground disabled:opacity-30 text-xs leading-none"
                   >
                     &uarr;
                   </button>
                   <button
                     onClick={() => moveLesson(i, 1)}
                     disabled={i === lessons.length - 1}
-                    className="text-gray-400 hover:text-gray-600 disabled:opacity-30 text-xs leading-none"
+                    className="text-muted hover:text-foreground disabled:opacity-30 text-xs leading-none"
                   >
                     &darr;
                   </button>
@@ -221,7 +221,7 @@ export default function CurriculumEditor() {
                   <div className="font-semibold text-sm">
                     {i + 1}. {lesson.title}
                   </div>
-                  <div className="text-xs text-gray-500">
+                  <div className="text-xs text-muted">
                     {lesson.objective}
                   </div>
                 </div>
@@ -230,7 +230,7 @@ export default function CurriculumEditor() {
                     onClick={() =>
                       setEditingSlug(isEditing ? null : lesson.slug)
                     }
-                    className="text-sm text-gray-500 hover:text-gray-700"
+                    className="text-sm text-muted hover:text-foreground"
                   >
                     {isEditing ? "Collapse" : "Edit"}
                   </button>
@@ -245,10 +245,10 @@ export default function CurriculumEditor() {
 
               {/* Expanded edit form */}
               {isEditing && (
-                <div className="px-4 py-4 space-y-4 border-t border-gray-100">
+                <div className="px-4 py-4 space-y-4 border-t border-border">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label className="block text-sm font-medium text-foreground mb-1">
                         Title
                       </label>
                       <input
@@ -259,11 +259,11 @@ export default function CurriculumEditor() {
                             title: e.target.value,
                           })
                         }
-                        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+                        className="w-full border border-border rounded-lg px-3 py-2 text-sm"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label className="block text-sm font-medium text-foreground mb-1">
                         Concept
                       </label>
                       <select
@@ -273,7 +273,7 @@ export default function CurriculumEditor() {
                             conceptSlug: e.target.value,
                           })
                         }
-                        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+                        className="w-full border border-border rounded-lg px-3 py-2 text-sm"
                       >
                         <option value="">Select concept</option>
                         {concepts.map((c) => (
@@ -286,7 +286,7 @@ export default function CurriculumEditor() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-foreground mb-1">
                       Objective
                     </label>
                     <input
@@ -297,12 +297,12 @@ export default function CurriculumEditor() {
                           objective: e.target.value,
                         })
                       }
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+                      className="w-full border border-border rounded-lg px-3 py-2 text-sm"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-foreground mb-1">
                       Introduction
                     </label>
                     <textarea
@@ -313,12 +313,12 @@ export default function CurriculumEditor() {
                         })
                       }
                       rows={4}
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+                      className="w-full border border-border rounded-lg px-3 py-2 text-sm"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-foreground mb-1">
                       Wrap-Up
                     </label>
                     <textarea
@@ -329,19 +329,19 @@ export default function CurriculumEditor() {
                         })
                       }
                       rows={3}
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+                      className="w-full border border-border rounded-lg px-3 py-2 text-sm"
                     />
                   </div>
 
                   {/* Recipe options */}
                   <div>
                     <div className="flex items-center justify-between mb-2">
-                      <label className="text-sm font-medium text-gray-700">
+                      <label className="text-sm font-medium text-foreground">
                         Recipe Options
                       </label>
                       <button
                         onClick={() => addRecipeOption(lesson.slug)}
-                        className="text-xs text-orange-700 hover:text-orange-800"
+                        className="text-xs text-accent hover:text-accent-dark"
                       >
                         + Add Recipe
                       </button>
@@ -350,7 +350,7 @@ export default function CurriculumEditor() {
                       {lesson.recipeOptions.map((opt, oi) => (
                         <div
                           key={oi}
-                          className="border border-gray-100 rounded-lg p-3 bg-gray-50"
+                          className="border border-border rounded-lg p-3 bg-background"
                         >
                           <div className="flex items-center gap-3 mb-2">
                             <select
@@ -363,7 +363,7 @@ export default function CurriculumEditor() {
                                 };
                                 updateRecipeOptions(lesson.slug, opts);
                               }}
-                              className="flex-1 border border-gray-300 rounded px-2 py-1.5 text-sm"
+                              className="flex-1 border border-border rounded px-2 py-1.5 text-sm"
                             >
                               <option value="">Select recipe</option>
                               {recipes.map((r) => (
@@ -372,7 +372,7 @@ export default function CurriculumEditor() {
                                 </option>
                               ))}
                             </select>
-                            <label className="flex items-center gap-1 text-xs text-gray-500">
+                            <label className="flex items-center gap-1 text-xs text-muted">
                               <input
                                 type="checkbox"
                                 checked={opt.recommended}
@@ -408,7 +408,7 @@ export default function CurriculumEditor() {
                             }}
                             rows={2}
                             placeholder="Why this recipe teaches the concept..."
-                            className="w-full border border-gray-300 rounded px-2 py-1.5 text-sm"
+                            className="w-full border border-border rounded px-2 py-1.5 text-sm"
                           />
                         </div>
                       ))}
@@ -419,7 +419,7 @@ export default function CurriculumEditor() {
                     <button
                       onClick={() => saveLesson(lesson)}
                       disabled={saving}
-                      className="px-4 py-2 bg-orange-700 text-white rounded-lg text-sm font-medium hover:bg-orange-800 disabled:opacity-50"
+                      className="px-4 py-2 bg-foreground text-background rounded-lg text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
                     >
                       {saving ? "Saving..." : "Save Lesson"}
                     </button>
@@ -433,11 +433,11 @@ export default function CurriculumEditor() {
 
       {/* New lesson form */}
       {showNewForm && (
-        <div className="bg-white border-2 border-orange-200 rounded-lg p-6 space-y-4">
+        <div className="bg-surface border-2 border-accent-light rounded-lg p-6 space-y-4">
           <h2 className="font-semibold">New Lesson</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-foreground mb-1">
                 Title
               </label>
               <input
@@ -446,11 +446,11 @@ export default function CurriculumEditor() {
                 onChange={(e) =>
                   setNewLesson((l) => ({ ...l, title: e.target.value }))
                 }
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+                className="w-full border border-border rounded-lg px-3 py-2 text-sm"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-foreground mb-1">
                 Slug
               </label>
               <input
@@ -460,11 +460,11 @@ export default function CurriculumEditor() {
                   setNewLesson((l) => ({ ...l, slug: e.target.value }))
                 }
                 placeholder="lesson-my-topic"
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+                className="w-full border border-border rounded-lg px-3 py-2 text-sm"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-foreground mb-1">
                 Concept
               </label>
               <select
@@ -475,7 +475,7 @@ export default function CurriculumEditor() {
                     conceptSlug: e.target.value,
                   }))
                 }
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+                className="w-full border border-border rounded-lg px-3 py-2 text-sm"
               >
                 <option value="">Select concept</option>
                 {concepts.map((c) => (
@@ -486,7 +486,7 @@ export default function CurriculumEditor() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-foreground mb-1">
                 Objective
               </label>
               <input
@@ -495,12 +495,12 @@ export default function CurriculumEditor() {
                 onChange={(e) =>
                   setNewLesson((l) => ({ ...l, objective: e.target.value }))
                 }
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+                className="w-full border border-border rounded-lg px-3 py-2 text-sm"
               />
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-foreground mb-1">
               Introduction
             </label>
             <textarea
@@ -512,11 +512,11 @@ export default function CurriculumEditor() {
                 }))
               }
               rows={3}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+              className="w-full border border-border rounded-lg px-3 py-2 text-sm"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-foreground mb-1">
               Wrap-Up
             </label>
             <textarea
@@ -525,20 +525,20 @@ export default function CurriculumEditor() {
                 setNewLesson((l) => ({ ...l, wrapUp: e.target.value }))
               }
               rows={2}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+              className="w-full border border-border rounded-lg px-3 py-2 text-sm"
             />
           </div>
           <div className="flex gap-3 justify-end">
             <button
               onClick={() => setShowNewForm(false)}
-              className="px-4 py-2 border border-gray-300 rounded-lg text-sm"
+              className="px-4 py-2 border border-border rounded-lg text-sm"
             >
               Cancel
             </button>
             <button
               onClick={createLesson}
               disabled={saving || !newLesson.slug || !newLesson.title}
-              className="px-4 py-2 bg-orange-700 text-white rounded-lg text-sm font-medium hover:bg-orange-800 disabled:opacity-50"
+              className="px-4 py-2 bg-foreground text-background rounded-lg text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
             >
               Create Lesson
             </button>
