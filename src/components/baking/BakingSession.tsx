@@ -11,6 +11,7 @@ import { StepCard } from "./StepCard";
 import { TimerDisplay } from "./TimerDisplay";
 import { TimerControls } from "./TimerControls";
 import { StepNavigation } from "./StepNavigation";
+import { IngredientPanel } from "./IngredientPanel";
 import { DoughAssistant } from "./DoughAssistant";
 
 interface BakingSessionProps {
@@ -84,6 +85,11 @@ export function BakingSession({ recipe, returnUrl }: BakingSessionProps) {
           totalSteps={state.totalSteps}
         />
       </div>
+
+      <IngredientPanel
+        ingredients={recipe.ingredients}
+        servings={recipe.servings}
+      />
 
       <StepCard
         step={currentStep}
