@@ -25,6 +25,12 @@ export default function AdminLayout({
             >
               Curriculum
             </Link>
+            <Link
+              href="/admin/site-settings"
+              className="text-gray-600 hover:text-gray-900"
+            >
+              Site Settings
+            </Link>
           </div>
           <div className="ml-auto">
             <Link href="/" className="text-sm text-gray-400 hover:text-gray-600">

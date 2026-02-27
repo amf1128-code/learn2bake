@@ -121,6 +121,20 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
 
   // --- Image upload ---
   const fileInputRefs = useRef<Record<number, HTMLInputElement | null>>({});
+  const heroFileInputRef = useRef<HTMLInputElement | null>(null);
+  const [uploadingHero, setUploadingHero] = useState(false);
+
+  async function uploadHeroImage(file: File) {
+    setUploadingHero(true);
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("folder", "recipes");
+    const res = await fetch(`/api/upload`, { method: "POST", body: formData });
+    setUploadingHero(false);
+    if (!res.ok) return;
+    const { path } = await res.json();
+    update({ image: path });
+  }
 
   async function uploadImage(stepIndex: number, file: File) {
     const formData = new FormData();
@@ -295,6 +309,46 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
               placeholder="e.g. 25 minutes"
             />
           </div>
+        </div>
+
+        {/* Hero image */}
+        <div className="mt-4">
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Hero Image
+          </label>
+          {recipe.image && (
+            <div className="mb-2 relative inline-block">
+              <img
+                src={recipe.image}
+                alt="Recipe hero"
+                className="w-64 h-36 object-cover rounded border"
+              />
+              <button
+                onClick={() => update({ image: undefined })}
+                className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center"
+              >
+                &times;
+              </button>
+            </div>
+          )}
+          <div>
+            <input
+              ref={heroFileInputRef}
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) uploadHeroImage(file);
+              }}
+              className="text-sm"
+            />
+            {uploadingHero && (
+              <span className="ml-2 text-sm text-gray-400">Uploading...</span>
+            )}
+          </div>
+          <p className="text-xs text-gray-400 mt-1">
+            Shown at the top of the recipe page and on recipe cards.
+          </p>
         </div>
 
         {/* Concepts taught */}

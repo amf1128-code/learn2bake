@@ -50,6 +50,16 @@ export default function AdminDashboard() {
             Reorder lessons, edit objectives, and assign recipes to each step.
           </p>
         </Link>
+
+        <Link
+          href="/admin/site-settings"
+          className="bg-white border border-gray-200 rounded-lg p-6 hover:border-orange-300 transition-colors"
+        >
+          <h2 className="font-semibold text-lg mb-1">Site Settings</h2>
+          <p className="text-sm text-gray-500">
+            Upload a homepage hero background image and manage global site appearance.
+          </p>
+        </Link>
       </div>
 
       {counts === null && (
