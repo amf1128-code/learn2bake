@@ -4,6 +4,13 @@ import { useState, useEffect } from "react";
 import { Lesson, RecipeOption } from "@/types/lesson";
 import { Recipe } from "@/types/recipe";
 import { Concept } from "@/types/concept";
+import {
+  btnPrimary, btnGhost, btnLink, btnLinkXs, btnMuted, btnRemove, btnMove,
+  inputBase, inputSm,
+  labelBase, labelInline,
+  card, cardFlush, cardInner,
+  statusSuccess,
+} from "@/app/admin/styles";
 
 
 export default function CurriculumEditor() {
@@ -174,11 +181,11 @@ export default function CurriculumEditor() {
         <h1 className="font-serif text-2xl">Curriculum</h1>
         <div className="flex items-center gap-3">
           {status && (
-            <span className="text-sm text-green-600">{status}</span>
+            <span className={statusSuccess}>{status}</span>
           )}
           <button
             onClick={() => setShowNewForm(true)}
-            className="px-4 py-2 bg-foreground text-background rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
+            className={btnPrimary}
           >
             + New Lesson
           </button>
@@ -196,7 +203,7 @@ export default function CurriculumEditor() {
           return (
             <div
               key={lesson.slug}
-              className="bg-surface border border-border rounded-lg overflow-hidden"
+              className={cardFlush}
             >
               {/* Lesson header */}
               <div className="flex items-center gap-3 px-4 py-3 bg-background">
@@ -204,14 +211,14 @@ export default function CurriculumEditor() {
                   <button
                     onClick={() => moveLesson(i, -1)}
                     disabled={i === 0}
-                    className="text-muted hover:text-foreground disabled:opacity-30 text-xs leading-none"
+                    className={`${btnMove} leading-none`}
                   >
                     &uarr;
                   </button>
                   <button
                     onClick={() => moveLesson(i, 1)}
                     disabled={i === lessons.length - 1}
-                    className="text-muted hover:text-foreground disabled:opacity-30 text-xs leading-none"
+                    className={`${btnMove} leading-none`}
                   >
                     &darr;
                   </button>
@@ -230,13 +237,13 @@ export default function CurriculumEditor() {
                     onClick={() =>
                       setEditingSlug(isEditing ? null : lesson.slug)
                     }
-                    className="text-sm text-muted hover:text-foreground"
+                    className={btnMuted}
                   >
                     {isEditing ? "Collapse" : "Edit"}
                   </button>
                   <button
                     onClick={() => deleteLesson(lesson.slug)}
-                    className="text-sm text-red-400 hover:text-red-600"
+                    className={btnRemove}
                   >
                     Delete
                   </button>
@@ -248,9 +255,7 @@ export default function CurriculumEditor() {
                 <div className="px-4 py-4 space-y-4 border-t border-border">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-1">
-                        Title
-                      </label>
+                      <label className={labelBase}>Title</label>
                       <input
                         type="text"
                         value={lesson.title}
@@ -259,13 +264,11 @@ export default function CurriculumEditor() {
                             title: e.target.value,
                           })
                         }
-                        className="w-full border border-border rounded-lg px-3 py-2 text-sm"
+                        className={inputBase}
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-1">
-                        Concept
-                      </label>
+                      <label className={labelBase}>Concept</label>
                       <select
                         value={lesson.conceptSlug}
                         onChange={(e) =>
@@ -273,7 +276,7 @@ export default function CurriculumEditor() {
                             conceptSlug: e.target.value,
                           })
                         }
-                        className="w-full border border-border rounded-lg px-3 py-2 text-sm"
+                        className={inputBase}
                       >
                         <option value="">Select concept</option>
                         {concepts.map((c) => (
@@ -286,9 +289,7 @@ export default function CurriculumEditor() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-1">
-                      Objective
-                    </label>
+                    <label className={labelBase}>Objective</label>
                     <input
                       type="text"
                       value={lesson.objective}
@@ -297,14 +298,12 @@ export default function CurriculumEditor() {
                           objective: e.target.value,
                         })
                       }
-                      className="w-full border border-border rounded-lg px-3 py-2 text-sm"
+                      className={inputBase}
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-1">
-                      Introduction
-                    </label>
+                    <label className={labelBase}>Introduction</label>
                     <textarea
                       value={lesson.introduction}
                       onChange={(e) =>
@@ -313,14 +312,12 @@ export default function CurriculumEditor() {
                         })
                       }
                       rows={4}
-                      className="w-full border border-border rounded-lg px-3 py-2 text-sm"
+                      className={inputBase}
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-1">
-                      Wrap-Up
-                    </label>
+                    <label className={labelBase}>Wrap-Up</label>
                     <textarea
                       value={lesson.wrapUp}
                       onChange={(e) =>
@@ -329,19 +326,17 @@ export default function CurriculumEditor() {
                         })
                       }
                       rows={3}
-                      className="w-full border border-border rounded-lg px-3 py-2 text-sm"
+                      className={inputBase}
                     />
                   </div>
 
                   {/* Recipe options */}
                   <div>
                     <div className="flex items-center justify-between mb-2">
-                      <label className="text-sm font-medium text-foreground">
-                        Recipe Options
-                      </label>
+                      <label className={labelInline}>Recipe Options</label>
                       <button
                         onClick={() => addRecipeOption(lesson.slug)}
-                        className="text-xs text-accent hover:text-accent-dark"
+                        className={btnLinkXs}
                       >
                         + Add Recipe
                       </button>
@@ -350,7 +345,7 @@ export default function CurriculumEditor() {
                       {lesson.recipeOptions.map((opt, oi) => (
                         <div
                           key={oi}
-                          className="border border-border rounded-lg p-3 bg-background"
+                          className={cardInner}
                         >
                           <div className="flex items-center gap-3 mb-2">
                             <select
@@ -363,7 +358,7 @@ export default function CurriculumEditor() {
                                 };
                                 updateRecipeOptions(lesson.slug, opts);
                               }}
-                              className="flex-1 border border-border rounded px-2 py-1.5 text-sm"
+                              className={`flex-1 ${inputSm}`}
                             >
                               <option value="">Select recipe</option>
                               {recipes.map((r) => (
@@ -391,7 +386,7 @@ export default function CurriculumEditor() {
                               onClick={() =>
                                 removeRecipeOption(lesson.slug, oi)
                               }
-                              className="text-red-400 hover:text-red-600 text-sm"
+                              className={btnRemove}
                             >
                               &times;
                             </button>
@@ -408,7 +403,7 @@ export default function CurriculumEditor() {
                             }}
                             rows={2}
                             placeholder="Why this recipe teaches the concept..."
-                            className="w-full border border-border rounded px-2 py-1.5 text-sm"
+                            className={`w-full ${inputSm}`}
                           />
                         </div>
                       ))}
@@ -419,7 +414,7 @@ export default function CurriculumEditor() {
                     <button
                       onClick={() => saveLesson(lesson)}
                       disabled={saving}
-                      className="px-4 py-2 bg-foreground text-background rounded-lg text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
+                      className={btnPrimary}
                     >
                       {saving ? "Saving..." : "Save Lesson"}
                     </button>
@@ -437,22 +432,18 @@ export default function CurriculumEditor() {
           <h2 className="font-semibold">New Lesson</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-foreground mb-1">
-                Title
-              </label>
+              <label className={labelBase}>Title</label>
               <input
                 type="text"
                 value={newLesson.title}
                 onChange={(e) =>
                   setNewLesson((l) => ({ ...l, title: e.target.value }))
                 }
-                className="w-full border border-border rounded-lg px-3 py-2 text-sm"
+                className={inputBase}
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-foreground mb-1">
-                Slug
-              </label>
+              <label className={labelBase}>Slug</label>
               <input
                 type="text"
                 value={newLesson.slug}
@@ -460,13 +451,11 @@ export default function CurriculumEditor() {
                   setNewLesson((l) => ({ ...l, slug: e.target.value }))
                 }
                 placeholder="lesson-my-topic"
-                className="w-full border border-border rounded-lg px-3 py-2 text-sm"
+                className={inputBase}
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-foreground mb-1">
-                Concept
-              </label>
+              <label className={labelBase}>Concept</label>
               <select
                 value={newLesson.conceptSlug}
                 onChange={(e) =>
@@ -475,7 +464,7 @@ export default function CurriculumEditor() {
                     conceptSlug: e.target.value,
                   }))
                 }
-                className="w-full border border-border rounded-lg px-3 py-2 text-sm"
+                className={inputBase}
               >
                 <option value="">Select concept</option>
                 {concepts.map((c) => (
@@ -486,23 +475,19 @@ export default function CurriculumEditor() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-foreground mb-1">
-                Objective
-              </label>
+              <label className={labelBase}>Objective</label>
               <input
                 type="text"
                 value={newLesson.objective}
                 onChange={(e) =>
                   setNewLesson((l) => ({ ...l, objective: e.target.value }))
                 }
-                className="w-full border border-border rounded-lg px-3 py-2 text-sm"
+                className={inputBase}
               />
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1">
-              Introduction
-            </label>
+            <label className={labelBase}>Introduction</label>
             <textarea
               value={newLesson.introduction}
               onChange={(e) =>
@@ -512,33 +497,31 @@ export default function CurriculumEditor() {
                 }))
               }
               rows={3}
-              className="w-full border border-border rounded-lg px-3 py-2 text-sm"
+              className={inputBase}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1">
-              Wrap-Up
-            </label>
+            <label className={labelBase}>Wrap-Up</label>
             <textarea
               value={newLesson.wrapUp}
               onChange={(e) =>
                 setNewLesson((l) => ({ ...l, wrapUp: e.target.value }))
               }
               rows={2}
-              className="w-full border border-border rounded-lg px-3 py-2 text-sm"
+              className={inputBase}
             />
           </div>
           <div className="flex gap-3 justify-end">
             <button
               onClick={() => setShowNewForm(false)}
-              className="px-4 py-2 border border-border rounded-lg text-sm"
+              className={btnGhost}
             >
               Cancel
             </button>
             <button
               onClick={createLesson}
               disabled={saving || !newLesson.slug || !newLesson.title}
-              className="px-4 py-2 bg-foreground text-background rounded-lg text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
+              className={btnPrimary}
             >
               Create Lesson
             </button>

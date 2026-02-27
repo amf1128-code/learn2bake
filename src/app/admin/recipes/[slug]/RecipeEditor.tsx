@@ -4,6 +4,17 @@ import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Recipe, RecipeStep, Ingredient, Difficulty, ReferenceVideo } from "@/types/recipe";
 import { Concept } from "@/types/concept";
+import {
+  btnPrimary, btnDanger, btnLink, btnLinkXs, btnRemove, btnMove, btnImageRemove,
+  inputBase, inputDisabled, inputSm,
+  labelBase, labelSm, labelInline,
+  card, cardFlush, cardInner,
+  statusSuccess, statusError,
+  badgeBlue, badgeGreen, badgePurple,
+  pillLg, pillSm, pillOn, pillOff,
+  timerToggleBase, timerToggleOn,
+  bakersBase, colHeader,
+} from "@/app/admin/styles";
 
 
 interface Props {
@@ -243,22 +254,22 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
         </h1>
         <div className="flex items-center gap-3">
           {saved && (
-            <span className="text-sm text-green-600">Saved</span>
+            <span className={statusSuccess}>Saved</span>
           )}
           {error && (
-            <span className="text-sm text-red-600">{error}</span>
+            <span className={statusError}>{error}</span>
           )}
           <button
             onClick={save}
             disabled={saving}
-            className="px-4 py-2 bg-foreground text-background rounded-lg text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
+            className={btnPrimary}
           >
             {saving ? "Saving..." : "Save"}
           </button>
           {!isNew && (
             <button
               onClick={deleteRecipe}
-              className="px-4 py-2 bg-red-50 text-red-600 rounded-lg text-sm font-medium hover:bg-red-100"
+              className={btnDanger}
             >
               Delete
             </button>
@@ -267,53 +278,45 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
       </div>
 
       {/* Metadata */}
-      <section className="bg-surface border border-border rounded-lg p-6">
+      <section className={card}>
         <h2 className="font-semibold mb-4">Recipe Details</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1">
-              Title
-            </label>
+            <label className={labelBase}>Title</label>
             <input
               type="text"
               value={recipe.title}
               onChange={(e) => update({ title: e.target.value })}
-              className="w-full border border-border rounded-lg px-3 py-2 text-sm"
+              className={inputBase}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1">
-              Slug
-            </label>
+            <label className={labelBase}>Slug</label>
             <input
               type="text"
               value={recipe.slug}
               onChange={(e) => update({ slug: e.target.value })}
               disabled={!isNew}
-              className="w-full border border-border rounded-lg px-3 py-2 text-sm disabled:bg-background"
+              className={inputDisabled}
             />
           </div>
           <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-foreground mb-1">
-              Description
-            </label>
+            <label className={labelBase}>Description</label>
             <textarea
               value={recipe.description}
               onChange={(e) => update({ description: e.target.value })}
               rows={2}
-              className="w-full border border-border rounded-lg px-3 py-2 text-sm"
+              className={inputBase}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1">
-              Difficulty
-            </label>
+            <label className={labelBase}>Difficulty</label>
             <select
               value={recipe.difficulty}
               onChange={(e) =>
                 update({ difficulty: e.target.value as Difficulty })
               }
-              className="w-full border border-border rounded-lg px-3 py-2 text-sm"
+              className={inputBase}
             >
               <option value="beginner">Beginner</option>
               <option value="intermediate">Intermediate</option>
@@ -321,37 +324,31 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1">
-              Servings
-            </label>
+            <label className={labelBase}>Servings</label>
             <input
               type="text"
               value={recipe.servings}
               onChange={(e) => update({ servings: e.target.value })}
-              className="w-full border border-border rounded-lg px-3 py-2 text-sm"
+              className={inputBase}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1">
-              Total Time
-            </label>
+            <label className={labelBase}>Total Time</label>
             <input
               type="text"
               value={recipe.totalTime}
               onChange={(e) => update({ totalTime: e.target.value })}
-              className="w-full border border-border rounded-lg px-3 py-2 text-sm"
+              className={inputBase}
               placeholder="e.g. 3.5 hours"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1">
-              Active Time
-            </label>
+            <label className={labelBase}>Active Time</label>
             <input
               type="text"
               value={recipe.activeTime}
               onChange={(e) => update({ activeTime: e.target.value })}
-              className="w-full border border-border rounded-lg px-3 py-2 text-sm"
+              className={inputBase}
               placeholder="e.g. 25 minutes"
             />
           </div>
@@ -359,9 +356,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
 
         {/* Hero image */}
         <div className="mt-4">
-          <label className="block text-sm font-medium text-foreground mb-2">
-            Hero Image
-          </label>
+          <label className={`${labelBase} mb-2`}>Hero Image</label>
           {recipe.image && (
             <div className="mb-2 relative inline-block">
               <img
@@ -371,7 +366,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
               />
               <button
                 onClick={() => update({ image: undefined })}
-                className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center"
+                className={btnImageRemove}
               >
                 &times;
               </button>
@@ -399,9 +394,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
 
         {/* Concepts taught */}
         <div className="mt-4">
-          <label className="block text-sm font-medium text-foreground mb-2">
-            Concepts Taught
-          </label>
+          <label className={`${labelBase} mb-2`}>Concepts Taught</label>
           <div className="flex flex-wrap gap-2">
             {concepts.map((c) => {
               const active = recipe.conceptsTaught.includes(c.slug);
@@ -415,11 +408,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                         : [...recipe.conceptsTaught, c.slug],
                     })
                   }
-                  className={`px-3 py-1 rounded-full text-sm border transition-colors ${
-                    active
-                      ? "bg-accent-light border-accent text-accent-dark"
-                      : "bg-background border-border text-muted"
-                  }`}
+                  className={`${pillLg} ${active ? pillOn : pillOff}`}
                 >
                   {c.icon} {c.name}
                 </button>
@@ -430,24 +419,26 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
       </section>
 
       {/* Ingredients */}
-      <section className="bg-surface border border-border rounded-lg p-6">
+      <section className={card}>
         <div className="flex items-center justify-between mb-4">
           <h2 className="font-semibold">Ingredients</h2>
           <button
             onClick={addIngredient}
-            className="text-sm text-accent hover:text-accent-dark font-medium"
+            className={btnLink}
           >
             + Add Ingredient
           </button>
         </div>
         <div className="space-y-2">
-          <div className="flex items-center gap-2 px-1 pb-1 border-b border-border">
-            <span className="flex-1 text-xs font-medium text-muted uppercase tracking-wide">Name</span>
-            <span className="w-20 text-xs font-medium text-muted uppercase tracking-wide">Amount</span>
-            <span className="w-16 text-xs font-medium text-muted uppercase tracking-wide">Unit</span>
-            <span className="w-20 text-xs font-medium text-muted uppercase tracking-wide">Baker&apos;s %</span>
-            <span className="w-5" />
-          </div>
+          {recipe.ingredients.length > 0 && (
+            <div className="flex items-center gap-2 px-1 pb-1 border-b border-border">
+              <span className={`flex-1 ${colHeader}`}>Name</span>
+              <span className={`w-20 ${colHeader}`}>Amount</span>
+              <span className={`w-16 ${colHeader}`}>Unit</span>
+              <span className={`w-20 ${colHeader}`}>Baker&apos;s %</span>
+              <span className="w-5" />
+            </div>
+          )}
           {recipe.ingredients.map((ing, i) => {
             const hasBase = recipe.ingredients.some((x) => x.bakersPercentage === 100);
             const isBase = ing.bakersPercentage === 100;
@@ -460,7 +451,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                     updateIngredient(i, { name: e.target.value })
                   }
                   placeholder="Name"
-                  className="flex-1 border border-border rounded px-2 py-1.5 text-sm"
+                  className={`flex-1 ${inputSm}`}
                 />
                 <input
                   type="number"
@@ -468,7 +459,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                   onChange={(e) =>
                     updateIngredient(i, { amount: Number(e.target.value) })
                   }
-                  className="w-20 border border-border rounded px-2 py-1.5 text-sm"
+                  className={`w-20 ${inputSm}`}
                 />
                 <input
                   type="text"
@@ -477,13 +468,13 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                     updateIngredient(i, { unit: e.target.value })
                   }
                   placeholder="unit"
-                  className="w-16 border border-border rounded px-2 py-1.5 text-sm"
+                  className={`w-16 ${inputSm}`}
                 />
                 <div className="w-20">
                   {isBase ? (
                     <button
                       onClick={() => setBaseIngredient(i)}
-                      className="w-full text-xs font-medium text-amber-700 bg-amber-50 border border-amber-200 rounded px-1.5 py-1 hover:bg-amber-100 text-center"
+                      className={bakersBase}
                       title="Base ingredient (100%) — click to unset"
                     >
                       ★ 100%
@@ -508,7 +499,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                 </div>
                 <button
                   onClick={() => removeIngredient(i)}
-                  className="text-red-400 hover:text-red-600 text-sm px-1"
+                  className={`${btnRemove} px-1`}
                 >
                   &times;
                 </button>
@@ -529,12 +520,12 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
       </section>
 
       {/* Steps */}
-      <section className="bg-surface border border-border rounded-lg p-6">
+      <section className={card}>
         <div className="flex items-center justify-between mb-4">
           <h2 className="font-semibold">Steps</h2>
           <button
             onClick={addStep}
-            className="text-sm text-accent hover:text-accent-dark font-medium"
+            className={btnLink}
           >
             + Add Step
           </button>
@@ -545,7 +536,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
             return (
               <div
                 key={step.id}
-                className="border border-border rounded-lg overflow-hidden"
+                className={cardFlush}
               >
                 {/* Step header */}
                 <div
@@ -561,7 +552,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                         moveStep(i, -1);
                       }}
                       disabled={i === 0}
-                      className="text-muted hover:text-foreground disabled:opacity-30 text-xs"
+                      className={btnMove}
                     >
                       &uarr;
                     </button>
@@ -571,7 +562,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                         moveStep(i, 1);
                       }}
                       disabled={i === recipe.steps.length - 1}
-                      className="text-muted hover:text-foreground disabled:opacity-30 text-xs"
+                      className={btnMove}
                     >
                       &darr;
                     </button>
@@ -584,18 +575,16 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                     {step.instruction.length > 80 ? "..." : ""}
                   </span>
                   {step.duration && (
-                    <span className="text-xs bg-blue-50 text-blue-600 px-2 py-0.5 rounded">
+                    <span className={badgeBlue}>
                       {step.timerType === "interval" ? "Interval" : "Timer"}{" "}
                       {Math.round(step.duration / 60)}m
                     </span>
                   )}
                   {step.image && (
-                    <span className="text-xs bg-green-50 text-green-600 px-2 py-0.5 rounded">
-                      Photo
-                    </span>
+                    <span className={badgeGreen}>Photo</span>
                   )}
                   {step.referenceVideos && step.referenceVideos.length > 0 && (
-                    <span className="text-xs bg-purple-50 text-purple-600 px-2 py-0.5 rounded">
+                    <span className={badgePurple}>
                       {step.referenceVideos.length} video{step.referenceVideos.length !== 1 ? "s" : ""}
                     </span>
                   )}
@@ -604,7 +593,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                       e.stopPropagation();
                       removeStep(i);
                     }}
-                    className="text-red-400 hover:text-red-600 text-sm"
+                    className={btnRemove}
                   >
                     &times;
                   </button>
@@ -615,25 +604,21 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                   <div className="px-4 py-4 space-y-4">
                     {/* Instruction */}
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-1">
-                        Instruction
-                      </label>
+                      <label className={labelBase}>Instruction</label>
                       <textarea
                         value={step.instruction}
                         onChange={(e) =>
                           updateStep(i, { instruction: e.target.value })
                         }
                         rows={3}
-                        className="w-full border border-border rounded-lg px-3 py-2 text-sm"
+                        className={inputBase}
                       />
                     </div>
 
                     {/* Timer */}
-                    <div className="border border-border rounded-lg p-4 bg-background">
+                    <div className={cardInner}>
                       <div className="flex items-center gap-3 mb-3">
-                        <label className="text-sm font-medium text-foreground">
-                          Timer
-                        </label>
+                        <label className={labelInline}>Timer</label>
                         <button
                           onClick={() =>
                             updateStep(i, {
@@ -647,10 +632,8 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                               intervalCount: undefined,
                             })
                           }
-                          className={`text-xs px-3 py-1 rounded-full border ${
-                            step.duration
-                              ? "bg-blue-50 border-blue-200 text-blue-700"
-                              : "bg-background border-border text-muted"
+                          className={`${timerToggleBase} ${
+                            step.duration ? timerToggleOn : pillOff
                           }`}
                         >
                           {step.duration ? "Enabled" : "Off — click to add"}
@@ -659,9 +642,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                       {step.duration !== undefined && (
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                           <div>
-                            <label className="block text-xs text-muted mb-1">
-                              Label
-                            </label>
+                            <label className={labelSm}>Label</label>
                             <input
                               type="text"
                               value={step.timerLabel || ""}
@@ -670,13 +651,11 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                                   timerLabel: e.target.value,
                                 })
                               }
-                              className="w-full border border-border rounded px-2 py-1.5 text-sm"
+                              className={`w-full ${inputSm}`}
                             />
                           </div>
                           <div>
-                            <label className="block text-xs text-muted mb-1">
-                              Duration (minutes)
-                            </label>
+                            <label className={labelSm}>Duration (minutes)</label>
                             <input
                               type="number"
                               value={Math.round(step.duration / 60)}
@@ -686,13 +665,11 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                                 })
                               }
                               min={1}
-                              className="w-full border border-border rounded px-2 py-1.5 text-sm"
+                              className={`w-full ${inputSm}`}
                             />
                           </div>
                           <div>
-                            <label className="block text-xs text-muted mb-1">
-                              Type
-                            </label>
+                            <label className={labelSm}>Type</label>
                             <select
                               value={step.timerType || "countdown"}
                               onChange={(e) =>
@@ -706,7 +683,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                                       : undefined,
                                 })
                               }
-                              className="w-full border border-border rounded px-2 py-1.5 text-sm"
+                              className={`w-full ${inputSm}`}
                             >
                               <option value="countdown">Countdown</option>
                               <option value="interval">
@@ -716,9 +693,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                           </div>
                           {step.timerType === "interval" && (
                             <div>
-                              <label className="block text-xs text-muted mb-1">
-                                Rounds
-                              </label>
+                              <label className={labelSm}>Rounds</label>
                               <input
                                 type="number"
                                 value={step.intervalCount || 4}
@@ -728,7 +703,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                                   })
                                 }
                                 min={2}
-                                className="w-full border border-border rounded px-2 py-1.5 text-sm"
+                                className={`w-full ${inputSm}`}
                               />
                             </div>
                           )}
@@ -739,12 +714,10 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                     {/* Tips */}
                     <div>
                       <div className="flex items-center justify-between mb-2">
-                        <label className="text-sm font-medium text-foreground">
-                          Tips
-                        </label>
+                        <label className={labelInline}>Tips</label>
                         <button
                           onClick={() => addTip(i)}
-                          className="text-xs text-accent hover:text-accent-dark"
+                          className={btnLinkXs}
                         >
                           + Add Tip
                         </button>
@@ -758,11 +731,11 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                                 updateTip(i, ti, e.target.value)
                               }
                               rows={1}
-                              className="flex-1 border border-border rounded px-2 py-1.5 text-sm"
+                              className={`flex-1 ${inputSm}`}
                             />
                             <button
                               onClick={() => removeTip(i, ti)}
-                              className="text-red-400 hover:text-red-600 text-sm mt-1"
+                              className={`${btnRemove} mt-1`}
                             >
                               &times;
                             </button>
@@ -773,7 +746,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
 
                     {/* Concepts reinforced */}
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
+                      <label className={`${labelBase} mb-2`}>
                         Concepts Reinforced
                       </label>
                       <div className="flex flex-wrap gap-2">
@@ -796,11 +769,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                                       ],
                                 })
                               }
-                              className={`px-2 py-0.5 rounded-full text-xs border ${
-                                active
-                                  ? "bg-accent-light border-accent text-accent-dark"
-                                  : "bg-background border-border text-muted"
-                              }`}
+                              className={`${pillSm} ${active ? pillOn : pillOff}`}
                             >
                               {c.icon} {c.name}
                             </button>
@@ -811,9 +780,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
 
                     {/* Image */}
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        Step Photo
-                      </label>
+                      <label className={`${labelBase} mb-2`}>Step Photo</label>
                       {step.image && (
                         <div className="mb-2 relative inline-block">
                           <img
@@ -823,7 +790,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                           />
                           <button
                             onClick={() => updateStep(i, { image: undefined })}
-                            className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center"
+                            className={btnImageRemove}
                           >
                             &times;
                           </button>
@@ -844,12 +811,10 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                     {/* Reference Videos */}
                     <div>
                       <div className="flex items-center justify-between mb-2">
-                        <label className="text-sm font-medium text-foreground">
-                          Reference Videos
-                        </label>
+                        <label className={labelInline}>Reference Videos</label>
                         <button
                           onClick={() => addReferenceVideo(i)}
-                          className="text-xs text-accent hover:text-accent-dark"
+                          className={btnLinkXs}
                         >
                           + Add Video
                         </button>
@@ -869,7 +834,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                                 })
                               }
                               placeholder="Label (e.g. Windowpane test)"
-                              className="w-1/3 border border-border rounded px-2 py-1.5 text-sm"
+                              className={`w-1/3 ${inputSm}`}
                             />
                             <input
                               type="url"
@@ -880,11 +845,11 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                                 })
                               }
                               placeholder="https://youtube.com/watch?v=..."
-                              className="flex-1 border border-border rounded px-2 py-1.5 text-sm"
+                              className={`flex-1 ${inputSm}`}
                             />
                             <button
                               onClick={() => removeReferenceVideo(i, vi)}
-                              className="text-red-400 hover:text-red-600 text-sm mt-1"
+                              className={`${btnRemove} mt-1`}
                             >
                               &times;
                             </button>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { btnPrimary, btnImageRemove, card, statusSuccess, statusError } from "@/app/admin/styles";
 
 export default function SiteSettingsPage() {
   const [heroImage, setHeroImage] = useState<string | undefined>(undefined);
@@ -63,19 +64,19 @@ export default function SiteSettingsPage() {
       <div className="flex items-center justify-between">
         <h1 className="font-serif text-2xl">Site Settings</h1>
         <div className="flex items-center gap-3">
-          {saved && <span className="text-sm text-green-600">Saved</span>}
-          {error && <span className="text-sm text-red-600">{error}</span>}
+          {saved && <span className={statusSuccess}>Saved</span>}
+          {error && <span className={statusError}>{error}</span>}
           <button
             onClick={save}
             disabled={saving}
-            className="px-4 py-2 bg-foreground text-background rounded-lg text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
+            className={btnPrimary}
           >
             {saving ? "Saving..." : "Save"}
           </button>
         </div>
       </div>
 
-      <section className="bg-surface border border-border rounded-lg p-6">
+      <section className={card}>
         <h2 className="font-semibold mb-4">Homepage Hero Image</h2>
         <p className="text-sm text-muted mb-4">
           This image appears as the full-width background behind the hero text on the homepage.
@@ -92,7 +93,7 @@ export default function SiteSettingsPage() {
               />
               <button
                 onClick={() => { setHeroImage(undefined); setSaved(false); }}
-                className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center"
+                className={btnImageRemove}
               >
                 &times;
               </button>
