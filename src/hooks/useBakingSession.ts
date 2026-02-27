@@ -112,6 +112,29 @@ function createReducer(steps: RecipeStep[]) {
         return state;
       }
 
+      case "RESET_TIMER": {
+        if (!state.timer) return state;
+        const currentStep = steps[state.currentStepIndex];
+        return {
+          ...state,
+          timer: buildTimerForStep(currentStep),
+        };
+      }
+
+      case "GO_TO_INTERVAL": {
+        if (!state.timer || state.timer.intervalTotal <= 1) return state;
+        const round = Math.max(1, Math.min(action.round, state.timer.intervalTotal));
+        return {
+          ...state,
+          timer: {
+            ...state.timer,
+            remainingSeconds: state.timer.totalSeconds,
+            intervalCurrent: round,
+            isRunning: false,
+          },
+        };
+      }
+
       case "RESET": {
         return {
           ...state,
