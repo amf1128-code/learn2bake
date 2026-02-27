@@ -47,7 +47,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
     update({
       ingredients: [
         ...recipe.ingredients,
-        { name: "", amount: 0, unit: "g" },
+        { name: "", amount: 0, unit: "g", bakersPercentage: undefined },
       ],
     });
   }
@@ -81,7 +81,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
 
   function setBaseIngredient(i: number) {
     const isCurrentBase = recipe.ingredients[i].bakersPercentage === 100;
-    let ingredients: Ingredient[] = recipe.ingredients.map((ing, idx) => ({
+    let ingredients = recipe.ingredients.map((ing, idx) => ({
       ...ing,
       bakersPercentage: idx === i && !isCurrentBase ? 100 : undefined,
     }));
