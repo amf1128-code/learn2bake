@@ -29,6 +29,16 @@ export function StepCard({ step, stepNumber, totalSteps }: StepCardProps) {
         )}
       </div>
 
+      {step.image && (
+        <div className="mb-4">
+          <img
+            src={step.image}
+            alt={`Step ${stepNumber}`}
+            className="w-full max-h-64 object-cover rounded-lg"
+          />
+        </div>
+      )}
+
       <p className="text-base leading-relaxed mb-4">{step.instruction}</p>
 
       {step.tips && step.tips.length > 0 && (

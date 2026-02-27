@@ -10,7 +10,7 @@ export interface Lesson {
   conceptSlug: string;
   order: number;
   introduction: string;
-  objectives: string[];
+  objective: string;
   recipeOptions: RecipeOption[];
   wrapUp: string;
 }

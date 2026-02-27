@@ -1,10 +1,11 @@
-import { concepts } from "@/data/concepts";
+import { readJsonDir, readJsonFile } from "@/lib/data";
 import { Concept } from "@/types/concept";
 
-export function getAllConcepts(): Concept[] {
-  return [...concepts].sort((a, b) => a.order - b.order);
+export async function getAllConcepts(): Promise<Concept[]> {
+  const concepts = await readJsonDir<Concept>("concepts");
+  return concepts.sort((a, b) => a.order - b.order);
 }
 
-export function getConcept(slug: string): Concept | undefined {
-  return concepts.find((c) => c.slug === slug);
+export async function getConcept(slug: string): Promise<Concept | undefined> {
+  return readJsonFile<Concept>("concepts", slug);
 }

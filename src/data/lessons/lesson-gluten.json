@@ -4,12 +4,7 @@
   "conceptSlug": "gluten-development",
   "order": 1,
   "introduction": "Every bread starts with gluten. When flour meets water, two proteins — glutenin and gliadin — begin linking together to form a stretchy, elastic network. This network is what traps gas from fermentation, giving bread its rise and structure.\n\nThere are many ways to develop gluten: kneading (the classic approach), stretch-and-folds (gentler, great for wet doughs), or simply letting time and water do the work (autolyse). In this lesson, you'll get hands-on with gluten and learn to feel when it's properly developed.",
-  "objectives": [
-    "Understand what gluten is and why it matters",
-    "Learn the windowpane test for checking gluten development",
-    "Feel the difference between under-developed and fully-developed dough",
-    "Practice at least one method of building gluten (kneading or folding)"
-  ],
+  "objective": "Understand what gluten is and develop it hands-on using kneading or folding",
   "recipeOptions": [
     {
       "recipeSlug": "sandwich-loaf",

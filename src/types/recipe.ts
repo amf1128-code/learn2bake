@@ -16,6 +16,7 @@ export interface RecipeStep {
   intervalCount?: number;
   tips?: string[];
   conceptsReinforced?: string[];
+  image?: string;
 }
 
 export interface Recipe {

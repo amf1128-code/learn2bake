@@ -2,9 +2,9 @@ import Link from "next/link";
 import { getAllLessons } from "@/lib/lessons";
 import { getAllRecipes } from "@/lib/recipes";
 
-export default function HomePage() {
-  const lessons = getAllLessons();
-  const recipes = getAllRecipes();
+export default async function HomePage() {
+  const lessons = await getAllLessons();
+  const recipes = await getAllRecipes();
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-16">

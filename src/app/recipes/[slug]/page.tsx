@@ -6,8 +6,9 @@ import { IngredientList } from "@/components/recipes/IngredientList";
 import { DifficultyBadge } from "@/components/recipes/DifficultyBadge";
 import { formatTime } from "@/lib/format-time";
 
-export function generateStaticParams() {
-  return getAllRecipes().map((r) => ({ slug: r.slug }));
+export async function generateStaticParams() {
+  const recipes = await getAllRecipes();
+  return recipes.map((r) => ({ slug: r.slug }));
 }
 
 export default async function RecipeDetailPage({
@@ -16,8 +17,12 @@ export default async function RecipeDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const recipe = getRecipe(slug);
+  const recipe = await getRecipe(slug);
   if (!recipe) notFound();
+
+  const concepts = await Promise.all(
+    recipe.conceptsTaught.map(async (s) => ({ slug: s, concept: await getConcept(s) }))
+  );
 
   const timedSteps = recipe.steps.filter((s) => s.duration);
   const totalTimedSeconds = timedSteps.reduce(
@@ -49,18 +54,15 @@ export default async function RecipeDetailPage({
 
       {/* Concepts taught */}
       <div className="flex flex-wrap gap-2 mb-6">
-        {recipe.conceptsTaught.map((conceptSlug) => {
-          const concept = getConcept(conceptSlug);
-          return (
-            <Link
-              key={conceptSlug}
-              href={`/concepts/${conceptSlug}`}
-              className="text-xs px-3 py-1 bg-accent-light text-accent rounded-full hover:bg-orange-200 transition-colors"
-            >
-              {concept?.icon} {concept?.name ?? conceptSlug}
-            </Link>
-          );
-        })}
+        {concepts.map(({ slug: conceptSlug, concept }) => (
+          <Link
+            key={conceptSlug}
+            href={`/concepts/${conceptSlug}`}
+            className="text-xs px-3 py-1 bg-accent-light text-accent rounded-full hover:bg-orange-200 transition-colors"
+          >
+            {concept?.icon} {concept?.name ?? conceptSlug}
+          </Link>
+        ))}
       </div>
 
       <IngredientList ingredients={recipe.ingredients} />
