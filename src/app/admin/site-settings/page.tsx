@@ -5,6 +5,8 @@ import { btnPrimary, btnImageRemove, card, statusSuccess, statusError } from "@/
 
 export default function SiteSettingsPage() {
   const [heroImage, setHeroImage] = useState<string | undefined>(undefined);
+  const [heroTitle, setHeroTitle] = useState<string>("");
+  const [heroSubtitle, setHeroSubtitle] = useState<string>("");
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -17,6 +19,8 @@ export default function SiteSettingsPage() {
       .then((r) => r.json())
       .then((data) => {
         setHeroImage(data.heroImage);
+        setHeroTitle(data.heroTitle || "");
+        setHeroSubtitle(data.heroSubtitle || "");
         setLoading(false);
       })
       .catch(() => setLoading(false));
@@ -45,7 +49,7 @@ export default function SiteSettingsPage() {
     const res = await fetch("/api/settings", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ heroImage }),
+      body: JSON.stringify({ heroImage, heroTitle, heroSubtitle }),
     });
     setSaving(false);
     if (!res.ok) {
@@ -120,6 +124,49 @@ export default function SiteSettingsPage() {
           {uploading && (
             <span className="text-sm text-muted">Uploading...</span>
           )}
+        </div>
+      </section>
+
+      <section className="bg-surface border border-border rounded-lg p-6">
+        <h2 className="font-semibold mb-4">Homepage Hero Text</h2>
+        <p className="text-sm text-muted mb-6">
+          Edit the main heading and description that appear on the homepage hero section.
+        </p>
+
+        <div className="space-y-6">
+          <div>
+            <label className="block text-sm font-medium mb-2">Hero Title</label>
+            <textarea
+              value={heroTitle}
+              onChange={(e) => {
+                setHeroTitle(e.target.value);
+                setSaved(false);
+              }}
+              placeholder="Learn to bake from scratch."
+              className="w-full px-3 py-2 border border-border rounded bg-background text-sm resize-none"
+              rows={2}
+            />
+            <p className="text-xs text-muted mt-1">
+              The main heading on the homepage. Use line breaks for multi-line text.
+            </p>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-2">Hero Subtitle</label>
+            <textarea
+              value={heroSubtitle}
+              onChange={(e) => {
+                setHeroSubtitle(e.target.value);
+                setSaved(false);
+              }}
+              placeholder="A guided curriculum that teaches you the principles of dough and baking, one concept at a time. Start with simple doughs and build up to sourdough boules."
+              className="w-full px-3 py-2 border border-border rounded bg-background text-sm resize-none"
+              rows={3}
+            />
+            <p className="text-xs text-muted mt-1">
+              The description text below the main heading.
+            </p>
+          </div>
         </div>
       </section>
     </div>

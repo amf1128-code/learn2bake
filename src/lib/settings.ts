@@ -2,6 +2,8 @@ import { supabase } from "./supabase";
 
 export type SiteSettings = {
   heroImage?: string;
+  heroTitle?: string;
+  heroSubtitle?: string;
 };
 
 export async function getSiteSettings(): Promise<SiteSettings> {

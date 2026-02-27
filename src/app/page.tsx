@@ -30,15 +30,11 @@ export default async function HomePage() {
           <div className="absolute inset-0 bg-white/65" />
         )}
         <div className="relative max-w-5xl mx-auto px-4 py-24">
-          <h1 className="font-serif text-6xl leading-tight mb-6 max-w-2xl">
-            Learn to bake
-            <br />
-            <em>from scratch.</em>
+          <h1 className="font-serif text-6xl leading-tight mb-6 max-w-2xl whitespace-pre-line">
+            {settings.heroTitle || "Learn to bake\nfrom scratch."}
           </h1>
           <p className="text-lg text-muted max-w-xl mb-8 leading-relaxed">
-            A guided curriculum that teaches you the principles of dough and
-            baking, one concept at a time. Start with simple doughs and build up
-            to sourdough boules.
+            {settings.heroSubtitle || "A guided curriculum that teaches you the principles of dough and baking, one concept at a time. Start with simple doughs and build up to sourdough boules."}
           </p>
           <div className="flex gap-5 items-center">
             <Link
