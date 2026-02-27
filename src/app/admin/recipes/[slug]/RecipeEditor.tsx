@@ -55,6 +55,15 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
   function updateIngredient(i: number, patch: Partial<Ingredient>) {
     let ingredients = [...recipe.ingredients];
     ingredients[i] = { ...ingredients[i], ...patch };
+    // Auto-set flour as base when name is updated to contain "flour" and no base exists yet
+    if ("name" in patch) {
+      const name = (patch.name ?? "").toLowerCase();
+      const hasBase = ingredients.some((ing) => ing.bakersPercentage === 100);
+      if (name.includes("flour") && !hasBase) {
+        ingredients[i] = { ...ingredients[i], bakersPercentage: 100 };
+        ingredients = recalcBakersPercentages(ingredients);
+      }
+    }
     if ("amount" in patch || "unit" in patch) {
       ingredients = recalcBakersPercentages(ingredients);
     }
