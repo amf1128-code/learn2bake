@@ -64,7 +64,7 @@ export function StepCard({ step, stepNumber, totalSteps }: StepCardProps) {
                 href={vid.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm text-accent hover:text-orange-800 underline"
+                className="inline-flex items-center gap-1.5 text-sm text-accent hover:text-accent-dark underline"
               >
                 <span>&#9654;</span>
                 {vid.label}
