@@ -46,14 +46,12 @@ export function TimerDisplay({ timer, label }: TimerDisplayProps) {
             strokeLinecap="round"
             strokeDasharray={`${2 * Math.PI * 44}`}
             strokeDashoffset={`${2 * Math.PI * 44 * (1 - progress / 100)}`}
-            className={isComplete ? "text-green-500" : "text-accent"}
+            className="text-accent"
             style={{ transition: "stroke-dashoffset 1s linear" }}
           />
         </svg>
         <div className="relative">
-          <span
-            className={`text-4xl font-mono font-bold ${isComplete ? "text-green-600" : ""}`}
-          >
+          <span className="text-4xl font-mono font-bold">
             {isComplete ? "Done" : formatTime(timer.remainingSeconds)}
           </span>
         </div>

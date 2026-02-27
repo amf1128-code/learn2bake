@@ -31,14 +31,14 @@ export function StepNavigation({
       {isLast ? (
         <button
           onClick={onComplete}
-          className="px-6 py-2.5 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
+          className="px-6 py-2.5 bg-foreground text-background font-medium hover:opacity-90 transition-opacity"
         >
           Finish Bake!
         </button>
       ) : (
         <button
           onClick={() => dispatch({ type: "NEXT_STEP" })}
-          className="px-6 py-2.5 bg-accent text-white rounded-lg font-medium hover:bg-orange-800 transition-colors"
+          className="px-6 py-2.5 bg-foreground text-background font-medium hover:opacity-90 transition-opacity"
         >
           Next Step &rarr;
         </button>

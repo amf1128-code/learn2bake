@@ -29,6 +29,7 @@ export interface Recipe {
   slug: string;
   title: string;
   description: string;
+  image?: string;
   difficulty: Difficulty;
   totalTime: string;
   activeTime: string;

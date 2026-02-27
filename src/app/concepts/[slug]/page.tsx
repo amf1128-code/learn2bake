@@ -30,33 +30,29 @@ export default async function ConceptDetailPage({
     <div className="max-w-3xl mx-auto px-4 py-10">
       <Link
         href="/concepts"
-        className="text-sm text-muted hover:text-foreground mb-4 inline-block"
+        className="text-sm text-muted hover:text-foreground mb-6 inline-block"
       >
         &larr; All Concepts
       </Link>
 
       <div className="mb-8">
-        <div className="flex items-center gap-3 mb-3">
-          <span className="text-4xl">{concept.icon}</span>
-          <h1 className="text-3xl font-bold">{concept.name}</h1>
-        </div>
+        <h1 className="font-serif text-4xl mb-3">{concept.name}</h1>
         <p className="text-muted leading-relaxed">{concept.description}</p>
       </div>
 
       {/* Prerequisites */}
       {prereqs.length > 0 && (
         <div className="mb-8">
-          <h2 className="font-semibold mb-3">Prerequisites</h2>
+          <p className="text-xs uppercase tracking-widest text-muted mb-3">Prerequisites</p>
           <div className="flex flex-wrap gap-2">
             {prereqs.map((p) =>
               p ? (
                 <Link
                   key={p.slug}
                   href={`/concepts/${p.slug}`}
-                  className="flex items-center gap-1.5 px-3 py-1.5 bg-surface border border-border rounded-lg text-sm hover:border-accent transition-colors"
+                  className="px-3 py-1.5 bg-surface border border-border text-sm hover:border-foreground transition-colors"
                 >
-                  <span>{p.icon}</span>
-                  <span>{p.name}</span>
+                  {p.name}
                 </Link>
               ) : null
             )}
@@ -67,10 +63,10 @@ export default async function ConceptDetailPage({
       {/* Related lesson */}
       {lesson && (
         <div className="mb-8">
-          <h2 className="font-semibold mb-3">Lesson</h2>
+          <p className="text-xs uppercase tracking-widest text-muted mb-3">Lesson</p>
           <Link
             href={`/learn/${lesson.slug}`}
-            className="block p-4 bg-surface border border-accent rounded-lg hover:bg-orange-50 transition-colors"
+            className="block p-4 bg-surface border border-border hover:border-foreground transition-colors"
           >
             <h3 className="font-medium mb-1">{lesson.title}</h3>
             <p className="text-sm text-muted">
@@ -82,10 +78,10 @@ export default async function ConceptDetailPage({
 
       {/* Recipes that teach this concept */}
       <div>
-        <h2 className="font-semibold mb-3">
+        <p className="text-xs uppercase tracking-widest text-muted mb-4">
           Recipes That Teach {concept.name}
-        </h2>
-        <div className="grid md:grid-cols-2 gap-4">
+        </p>
+        <div className="grid md:grid-cols-2 gap-6">
           {recipes.map((recipe) => (
             <RecipeCard key={recipe.slug} recipe={recipe} />
           ))}

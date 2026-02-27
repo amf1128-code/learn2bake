@@ -31,24 +31,18 @@ export default async function LessonDetailPage({
     <div className="max-w-3xl mx-auto px-4 py-10">
       <Link
         href="/learn"
-        className="text-sm text-muted hover:text-foreground mb-4 inline-block"
+        className="text-sm text-muted hover:text-foreground mb-6 inline-block"
       >
         &larr; All Lessons
       </Link>
 
       <div className="mb-8">
         {concept && (
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-2xl">{concept.icon}</span>
-            <span className="text-sm text-accent font-medium">
-              {concept.name}
-            </span>
-          </div>
+          <p className="text-sm text-accent font-medium mb-2">{concept.name}</p>
         )}
-        <h1 className="text-3xl font-bold mb-4">{lesson.title}</h1>
+        <h1 className="font-serif text-4xl mb-5">{lesson.title}</h1>
 
-        {/* Introduction */}
-        <div className="prose prose-sm max-w-none">
+        <div>
           {lesson.introduction.split("\n\n").map((paragraph, i) => (
             <p key={i} className="text-muted leading-relaxed mb-3">
               {paragraph}
@@ -58,16 +52,14 @@ export default async function LessonDetailPage({
       </div>
 
       {/* Objective */}
-      <div className="bg-surface border border-border rounded-lg p-5 mb-8">
-        <h2 className="font-semibold mb-2">Objective</h2>
-        <p className="text-sm">{lesson.objective}</p>
+      <div className="border-l-2 border-foreground pl-5 mb-10">
+        <p className="text-xs uppercase tracking-widest text-muted mb-1">Objective</p>
+        <p className="text-sm leading-relaxed">{lesson.objective}</p>
       </div>
 
       {/* Recipe picker */}
-      <div className="mb-8">
-        <h2 className="font-semibold text-lg mb-4">
-          Choose Your Recipe
-        </h2>
+      <div className="mb-10">
+        <h2 className="font-serif text-2xl mb-5">Choose Your Recipe</h2>
         <div className="space-y-3">
           {recipeOptionsWithData.map(({ option, recipe }) => {
             if (!recipe) return null;
@@ -75,37 +67,31 @@ export default async function LessonDetailPage({
             return (
               <div
                 key={option.recipeSlug}
-                className={`p-5 bg-surface border rounded-lg ${
-                  option.recommended
-                    ? "border-accent"
-                    : "border-border"
+                className={`p-5 bg-surface border ${
+                  option.recommended ? "border-foreground" : "border-border"
                 }`}
               >
                 <div className="flex items-center gap-2 mb-2">
                   {option.recommended && (
-                    <span className="text-xs px-2 py-0.5 bg-accent text-white rounded-full">
+                    <span className="text-xs px-2 py-0.5 bg-foreground text-background uppercase tracking-wider">
                       Recommended
                     </span>
                   )}
                   <DifficultyBadge difficulty={recipe.difficulty} />
-                  <span className="text-xs text-muted">
-                    {recipe.totalTime}
-                  </span>
+                  <span className="text-xs text-muted">{recipe.totalTime}</span>
                 </div>
-                <h3 className="font-semibold mb-1">{recipe.title}</h3>
-                <p className="text-sm text-muted mb-3">
-                  {option.whyThisRecipe}
-                </p>
-                <div className="flex gap-2">
+                <h3 className="font-medium mb-1">{recipe.title}</h3>
+                <p className="text-sm text-muted mb-4">{option.whyThisRecipe}</p>
+                <div className="flex gap-3">
                   <Link
                     href={`/recipes/${recipe.slug}/bake`}
-                    className="px-4 py-2 bg-accent text-white rounded-lg text-sm font-medium hover:bg-orange-800 transition-colors"
+                    className="px-4 py-2 bg-foreground text-background text-sm font-medium hover:opacity-90 transition-opacity"
                   >
                     Start Baking
                   </Link>
                   <Link
                     href={`/recipes/${recipe.slug}`}
-                    className="px-4 py-2 border border-border rounded-lg text-sm font-medium hover:bg-white transition-colors"
+                    className="px-4 py-2 border border-border text-sm font-medium hover:border-foreground transition-colors"
                   >
                     View Recipe
                   </Link>
@@ -117,9 +103,9 @@ export default async function LessonDetailPage({
       </div>
 
       {/* Wrap-up preview */}
-      <div className="bg-amber-50 border border-amber-200 rounded-lg p-5">
-        <h2 className="font-semibold mb-2">After You Bake</h2>
-        <p className="text-sm text-muted">{lesson.wrapUp}</p>
+      <div className="border-t border-border pt-6">
+        <p className="text-xs uppercase tracking-widest text-muted mb-2">After You Bake</p>
+        <p className="text-sm text-muted leading-relaxed">{lesson.wrapUp}</p>
       </div>
     </div>
   );
