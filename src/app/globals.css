@@ -20,6 +20,34 @@
   --color-surface: var(--surface);
   --color-muted: var(--muted);
   --color-border: var(--border);
+
+  /* Danger (errors, destructive actions) */
+  --color-danger: #dc2626;        /* red-600 */
+  --color-danger-light: #fef2f2;  /* red-50  */
+  --color-danger-subtle: #fee2e2; /* red-100 */
+  --color-danger-muted: #f87171;  /* red-400 */
+  --color-danger-bold: #ef4444;   /* red-500 */
+
+  /* Success (saved confirmations, photo badges) */
+  --color-success: #16a34a;       /* green-600 */
+  --color-success-light: #f0fdf4; /* green-50  */
+
+  /* Info (timer badges) */
+  --color-info: #2563eb;          /* blue-600 */
+  --color-info-dark: #1d4ed8;     /* blue-700 */
+  --color-info-light: #eff6ff;    /* blue-50  */
+  --color-info-subtle: #bfdbfe;   /* blue-200 */
+
+  /* Media (video badges) */
+  --color-media: #9333ea;         /* purple-600 */
+  --color-media-light: #faf5ff;   /* purple-50  */
+
+  /* Bakers (baker's percentage indicator) */
+  --color-bakers: #b45309;        /* amber-700 */
+  --color-bakers-light: #fffbeb;  /* amber-50  */
+  --color-bakers-subtle: #fde68a; /* amber-200 */
+  --color-bakers-hover: #fef3c7;  /* amber-100 */
+
   --font-sans: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-serif: "DM Serif Display", Georgia, "Times New Roman", serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;

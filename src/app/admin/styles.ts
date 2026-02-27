@@ -15,7 +15,7 @@ export const btnPrimary =
 
 /** Destructive record-level button — delete recipe */
 export const btnDanger =
-  "px-4 py-2 bg-red-50 text-red-600 rounded-lg text-sm font-medium hover:bg-red-100";
+  "px-4 py-2 bg-danger-light text-danger rounded-lg text-sm font-medium hover:bg-danger-subtle";
 
 /** Ghost / secondary button — cancel */
 export const btnGhost = "px-4 py-2 border border-border rounded-lg text-sm";
@@ -30,7 +30,7 @@ export const btnLinkXs = "text-xs text-accent hover:text-accent-dark";
 export const btnMuted = "text-sm text-muted hover:text-foreground";
 
 /** Inline × remove button next to list items */
-export const btnRemove = "text-red-400 hover:text-red-600 text-sm";
+export const btnRemove = "text-danger-muted hover:text-danger text-sm";
 
 /** Up/down reorder arrow buttons */
 export const btnMove =
@@ -38,7 +38,7 @@ export const btnMove =
 
 /** Floating × button overlaid on an image thumbnail */
 export const btnImageRemove =
-  "absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center";
+  "absolute -top-2 -right-2 bg-danger-bold text-white rounded-full w-5 h-5 text-xs flex items-center justify-center";
 
 // ---------------------------------------------------------------------------
 // Inputs
@@ -91,10 +91,10 @@ export const cardInner = "border border-border rounded-lg p-4 bg-background";
 // ---------------------------------------------------------------------------
 
 /** "Saved" / success confirmation text */
-export const statusSuccess = "text-sm text-green-600";
+export const statusSuccess = "text-sm text-success";
 
 /** Error message text */
-export const statusError = "text-sm text-red-600";
+export const statusError = "text-sm text-danger";
 
 // ---------------------------------------------------------------------------
 // Step header badges (pill-shaped status indicators)
@@ -102,15 +102,15 @@ export const statusError = "text-sm text-red-600";
 
 /** Timer badge */
 export const badgeBlue =
-  "text-xs bg-blue-50 text-blue-600 px-2 py-0.5 rounded";
+  "text-xs bg-info-light text-info px-2 py-0.5 rounded";
 
 /** Photo badge */
 export const badgeGreen =
-  "text-xs bg-green-50 text-green-600 px-2 py-0.5 rounded";
+  "text-xs bg-success-light text-success px-2 py-0.5 rounded";
 
 /** Videos badge */
 export const badgePurple =
-  "text-xs bg-purple-50 text-purple-600 px-2 py-0.5 rounded";
+  "text-xs bg-media-light text-media px-2 py-0.5 rounded";
 
 // ---------------------------------------------------------------------------
 // Concept / tag toggle pills
@@ -137,7 +137,7 @@ export const pillOff = "bg-background border-border text-muted";
 export const timerToggleBase = "text-xs px-3 py-1 rounded-full border";
 
 /** Active state for the timer toggle (timer is enabled) */
-export const timerToggleOn = "bg-blue-50 border-blue-200 text-blue-700";
+export const timerToggleOn = "bg-info-light border-info-subtle text-info-dark";
 
 // ---------------------------------------------------------------------------
 // Baker's percentage
@@ -145,7 +145,7 @@ export const timerToggleOn = "bg-blue-50 border-blue-200 text-blue-700";
 
 /** Base ingredient indicator button in the ingredient table */
 export const bakersBase =
-  "w-full text-xs font-medium text-amber-700 bg-amber-50 border border-amber-200 rounded px-1.5 py-1 hover:bg-amber-100 text-center";
+  "w-full text-xs font-medium text-bakers bg-bakers-light border border-bakers-subtle rounded px-1.5 py-1 hover:bg-bakers-hover text-center";
 
 // ---------------------------------------------------------------------------
 // Ingredient table
