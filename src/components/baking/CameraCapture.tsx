@@ -16,7 +16,6 @@ export function CameraCapture({ onCapture, disabled }: CameraCaptureProps) {
       const reader = new FileReader();
       reader.onload = () => {
         const dataUrl = reader.result as string;
-        // dataUrl is like "data:image/jpeg;base64,/9j/4AAQ..."
         setPreview(dataUrl);
         const [header, base64] = dataUrl.split(",");
         const mediaType = header.match(/data:(.*?);/)?.[1] || "image/jpeg";

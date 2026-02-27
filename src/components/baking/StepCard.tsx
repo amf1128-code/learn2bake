@@ -53,6 +53,28 @@ export function StepCard({ step, stepNumber, totalSteps }: StepCardProps) {
           ))}
         </div>
       )}
+
+      {step.referenceVideos && step.referenceVideos.length > 0 && (
+        <div className="border-t border-border pt-3 mt-3 space-y-2">
+          <p className="text-xs font-medium text-muted uppercase tracking-wider">
+            Watch &mdash; what to look for
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {step.referenceVideos.map((vid, i) => (
+              <a
+                key={i}
+                href={vid.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm text-accent hover:text-orange-800 underline"
+              >
+                <span>&#9654;</span>
+                {vid.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

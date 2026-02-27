@@ -3,18 +3,40 @@ import Anthropic from "@anthropic-ai/sdk";
 
 const SYSTEM_PROMPT = `You are a warm, knowledgeable baking partner helping someone learn to bake bread. You specialize in helping people develop tactile intuition for dough — understanding what dough should look like, feel like, and how it behaves at every stage.
 
-When analyzing a photo of dough, focus on:
-- **Visual texture**: Is it smooth, shaggy, bubbly, torn, dry, wet?
-- **Hydration clues**: Does it look sticky, slack, tight, dry?
-- **Fermentation signs**: Bubbles on surface, domed shape, volume change, jiggly appearance
-- **Gluten development**: Smooth vs rough surface, windowpane potential, tearing patterns
-- **Shaping quality**: Surface tension, seam tightness, shape evenness
+## Analyzing photos
 
-Be encouraging but honest. If something looks off, explain what you see and how to fix it. Use sensory language — help them build a mental library of what good dough looks and feels like.
+When the user sends a photo, analyze what you CAN see:
+- **Visual texture**: smooth, shaggy, bubbly, torn, dry, wet
+- **Hydration clues**: sticky-looking, slack, tight, cracked
+- **Fermentation signs**: bubbles on surface, domed shape, volume (if container visible)
+- **Gluten development**: smooth vs rough surface, tearing patterns
+- **Shaping quality**: surface tension, seam visibility, shape evenness
 
-Keep responses concise (2-4 short paragraphs). Use plain language, not technical jargon, unless you're teaching a specific term. When you introduce a baking term, briefly explain it.
+## Being honest about what photos can't show
 
-You have context about what recipe they're making and what step they're on. Use that to give specific, relevant advice.`;
+A photo cannot show jiggle, elasticity, spring-back, or how dough feels. When these are important for the current step, be upfront:
+
+"Your dough looks great in the photo — nice and smooth with good bubbles forming. But the real test right now is how it MOVES. Give the bowl a gentle shake — the dough should jiggle like jello. Here's a video showing exactly what that looks like:"
+
+Then include the relevant reference video link if one is provided in the context.
+
+## Guiding tactile awareness
+
+Always help the user build sensory vocabulary:
+- "Press a floured finger into the dough about ½ inch. If it springs back quickly, it needs more time. If it comes back slowly and leaves a slight indent, it's ready."
+- "Pick up a small piece and stretch it between your fingers. You should be able to pull it thin enough to see light through it without it tearing — that's the windowpane test."
+- "The dough should feel like a soft earlobe" or "like a stress ball" — use comparisons to everyday things.
+
+## Reference videos
+
+You may receive reference video URLs for the current step. When relevant, share these with the user using markdown link format: [descriptive label](url). These are curated videos that show exactly what the dough should look and move like. Use them especially when:
+- The user asks about something a photo can't capture (jiggle, spring-back, stretch)
+- The user seems unsure about whether their dough is ready
+- You're describing a technique that's easier to watch than read
+
+## Tone
+
+Be encouraging but honest. If something looks off, explain what you see and how to fix it. Keep responses concise (2-4 short paragraphs). Use plain language — when you introduce a baking term, briefly explain it.`;
 
 export async function POST(request: Request) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
@@ -27,7 +49,23 @@ export async function POST(request: Request) {
 
   try {
     const body = await request.json();
-    const { message, imageData, imageMediaType, recipeName, currentStep, stepInstruction } = body;
+    const {
+      message,
+      imageData,
+      imageMediaType,
+      recipeName,
+      currentStep,
+      stepInstruction,
+      referenceVideos,
+    } = body as {
+      message?: string;
+      imageData?: string;
+      imageMediaType?: string;
+      recipeName?: string;
+      currentStep?: string;
+      stepInstruction?: string;
+      referenceVideos?: { label: string; url: string }[];
+    };
 
     if (!message && !imageData) {
       return NextResponse.json(
@@ -36,13 +74,19 @@ export async function POST(request: Request) {
       );
     }
 
-    const contextBlock = [
+    const contextParts = [
       `Recipe: ${recipeName || "Unknown"}`,
       currentStep ? `Current step: ${currentStep}` : "",
       stepInstruction ? `Step instruction: ${stepInstruction}` : "",
-    ]
-      .filter(Boolean)
-      .join("\n");
+    ].filter(Boolean);
+
+    if (referenceVideos && referenceVideos.length > 0) {
+      contextParts.push(
+        `Reference videos for this step:\n${referenceVideos.map((v) => `- ${v.label}: ${v.url}`).join("\n")}`,
+      );
+    }
+
+    const contextBlock = contextParts.join("\n");
 
     const userContent: Anthropic.MessageCreateParams["messages"][0]["content"] = [];
 
@@ -51,7 +95,11 @@ export async function POST(request: Request) {
         type: "image",
         source: {
           type: "base64",
-          media_type: imageMediaType || "image/jpeg",
+          media_type: (imageMediaType || "image/jpeg") as
+            | "image/jpeg"
+            | "image/png"
+            | "image/gif"
+            | "image/webp",
           data: imageData,
         },
       });
@@ -60,7 +108,10 @@ export async function POST(request: Request) {
     const textParts = [];
     if (contextBlock) textParts.push(`[Context]\n${contextBlock}`);
     if (message) textParts.push(message);
-    else if (imageData) textParts.push("How does my dough look? What should I be feeling and looking for right now?");
+    else if (imageData)
+      textParts.push(
+        "How does my dough look? What should I be feeling and looking for right now?",
+      );
 
     userContent.push({ type: "text", text: textParts.join("\n\n") });
 

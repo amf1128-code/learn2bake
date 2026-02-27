@@ -112,6 +112,7 @@ export function BakingSession({ recipe, returnUrl }: BakingSessionProps) {
         recipeName={recipe.title}
         currentStepNumber={state.currentStepIndex + 1}
         stepInstruction={currentStep.instruction}
+        referenceVideos={currentStep.referenceVideos}
       />
     </div>
   );

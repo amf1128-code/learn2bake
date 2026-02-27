@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { Recipe, RecipeStep, Ingredient, Difficulty } from "@/types/recipe";
+import { Recipe, RecipeStep, Ingredient, Difficulty, ReferenceVideo } from "@/types/recipe";
 import { Concept } from "@/types/concept";
 
 
@@ -88,6 +88,34 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
     const step = recipe.steps[stepIndex];
     updateStep(stepIndex, {
       tips: (step.tips || []).filter((_, idx) => idx !== tipIndex),
+    });
+  }
+
+  // --- Reference videos ---
+  function addReferenceVideo(stepIndex: number) {
+    const step = recipe.steps[stepIndex];
+    updateStep(stepIndex, {
+      referenceVideos: [...(step.referenceVideos || []), { label: "", url: "" }],
+    });
+  }
+
+  function updateReferenceVideo(
+    stepIndex: number,
+    videoIndex: number,
+    patch: Partial<ReferenceVideo>,
+  ) {
+    const step = recipe.steps[stepIndex];
+    const videos = [...(step.referenceVideos || [])];
+    videos[videoIndex] = { ...videos[videoIndex], ...patch };
+    updateStep(stepIndex, { referenceVideos: videos });
+  }
+
+  function removeReferenceVideo(stepIndex: number, videoIndex: number) {
+    const step = recipe.steps[stepIndex];
+    updateStep(stepIndex, {
+      referenceVideos: (step.referenceVideos || []).filter(
+        (_, idx) => idx !== videoIndex,
+      ),
     });
   }
 
@@ -431,6 +459,11 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                       Photo
                     </span>
                   )}
+                  {step.referenceVideos && step.referenceVideos.length > 0 && (
+                    <span className="text-xs bg-purple-50 text-purple-600 px-2 py-0.5 rounded">
+                      {step.referenceVideos.length} video{step.referenceVideos.length !== 1 ? "s" : ""}
+                    </span>
+                  )}
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
@@ -671,6 +704,58 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
                         }}
                         className="text-sm"
                       />
+                    </div>
+
+                    {/* Reference Videos */}
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <label className="text-sm font-medium text-gray-700">
+                          Reference Videos
+                        </label>
+                        <button
+                          onClick={() => addReferenceVideo(i)}
+                          className="text-xs text-orange-700 hover:text-orange-800"
+                        >
+                          + Add Video
+                        </button>
+                      </div>
+                      <p className="text-xs text-gray-400 mb-2">
+                        YouTube links showing what the dough should look/feel like at this step. The AI assistant will share these with users.
+                      </p>
+                      <div className="space-y-2">
+                        {(step.referenceVideos || []).map((vid, vi) => (
+                          <div key={vi} className="flex items-start gap-2">
+                            <input
+                              type="text"
+                              value={vid.label}
+                              onChange={(e) =>
+                                updateReferenceVideo(i, vi, {
+                                  label: e.target.value,
+                                })
+                              }
+                              placeholder="Label (e.g. Windowpane test)"
+                              className="w-1/3 border border-gray-300 rounded px-2 py-1.5 text-sm"
+                            />
+                            <input
+                              type="url"
+                              value={vid.url}
+                              onChange={(e) =>
+                                updateReferenceVideo(i, vi, {
+                                  url: e.target.value,
+                                })
+                              }
+                              placeholder="https://youtube.com/watch?v=..."
+                              className="flex-1 border border-gray-300 rounded px-2 py-1.5 text-sm"
+                            />
+                            <button
+                              onClick={() => removeReferenceVideo(i, vi)}
+                              className="text-red-400 hover:text-red-600 text-sm mt-1"
+                            >
+                              &times;
+                            </button>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 )}

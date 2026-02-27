@@ -13,12 +13,14 @@ interface DoughAssistantProps {
   recipeName: string;
   currentStepNumber: number;
   stepInstruction: string;
+  referenceVideos?: { label: string; url: string }[];
 }
 
 export function DoughAssistant({
   recipeName,
   currentStepNumber,
   stepInstruction,
+  referenceVideos,
 }: DoughAssistantProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -72,6 +74,7 @@ export function DoughAssistant({
           recipeName,
           currentStep: `Step ${currentStepNumber}`,
           stepInstruction,
+          referenceVideos: referenceVideos || [],
         }),
       });
 
@@ -148,8 +151,8 @@ export function DoughAssistant({
             <p className="text-sm font-medium">Your baking partner</p>
             <p className="text-xs text-muted max-w-xs mx-auto leading-relaxed">
               Snap a photo of your dough and I&apos;ll help you understand
-              what&apos;s happening. Is it ready for the next step? Does
-              it need more time? Ask me anything.
+              what&apos;s happening. I&apos;ll also point you to videos
+              that show exactly what to look and feel for.
             </p>
             <div className="flex flex-wrap justify-center gap-2 pt-2">
               {[
@@ -192,7 +195,7 @@ export function DoughAssistant({
                   className="w-full max-h-40 object-cover rounded mb-2"
                 />
               )}
-              <div className="whitespace-pre-wrap">{msg.text}</div>
+              <MessageContent text={msg.text} isAssistant={msg.role === "assistant"} />
             </div>
           </div>
         ))}
@@ -236,6 +239,58 @@ export function DoughAssistant({
           </button>
         </div>
       </div>
+    </div>
+  );
+}
+
+/**
+ * Renders message text with clickable YouTube links.
+ * Detects markdown-style links [text](url) and bare YouTube URLs.
+ */
+function MessageContent({ text, isAssistant }: { text: string; isAssistant: boolean }) {
+  if (!isAssistant) {
+    return <div className="whitespace-pre-wrap">{text}</div>;
+  }
+
+  // Match markdown links [label](url) and bare YouTube URLs
+  const linkPattern = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|(https?:\/\/(?:www\.)?(?:youtube\.com|youtu\.be)\/[^\s]+)/g;
+
+  const parts: (string | { label: string; url: string })[] = [];
+  let lastIndex = 0;
+  let match;
+
+  while ((match = linkPattern.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+    if (match[1] && match[2]) {
+      parts.push({ label: match[1], url: match[2] });
+    } else if (match[3]) {
+      parts.push({ label: "Watch video", url: match[3] });
+    }
+    lastIndex = match.index + match[0].length;
+  }
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+
+  return (
+    <div className="whitespace-pre-wrap">
+      {parts.map((part, i) =>
+        typeof part === "string" ? (
+          <span key={i}>{part}</span>
+        ) : (
+          <a
+            key={i}
+            href={part.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent underline hover:text-orange-800"
+          >
+            {part.label}
+          </a>
+        ),
+      )}
     </div>
   );
 }

@@ -7,6 +7,11 @@ export interface Ingredient {
   bakersPercentage?: number;
 }
 
+export interface ReferenceVideo {
+  label: string;
+  url: string;
+}
+
 export interface RecipeStep {
   id: string;
   instruction: string;
@@ -17,6 +22,7 @@ export interface RecipeStep {
   tips?: string[];
   conceptsReinforced?: string[];
   image?: string;
+  referenceVideos?: ReferenceVideo[];
 }
 
 export interface Recipe {
