@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getAllLessons } from "@/lib/lessons";
 import { getAllRecipes } from "@/lib/recipes";
+import { RecipeCard } from "@/components/recipes/RecipeCard";
 
 export default async function HomePage() {
   const lessons = await getAllLessons();
@@ -9,57 +10,57 @@ export default async function HomePage() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-16">
       {/* Hero */}
-      <section className="text-center mb-20">
-        <h1 className="text-5xl font-bold mb-4 tracking-tight">
+      <section className="mb-24">
+        <h1 className="font-serif text-6xl leading-tight mb-6 max-w-2xl">
           Learn to bake
           <br />
-          <span className="text-accent">from scratch.</span>
+          <em>from scratch.</em>
         </h1>
-        <p className="text-lg text-muted max-w-2xl mx-auto mb-8">
+        <p className="text-lg text-muted max-w-xl mb-8 leading-relaxed">
           A guided curriculum that teaches you the principles of dough and
           baking, one concept at a time. Start with simple doughs and build up
           to sourdough boules.
         </p>
-        <div className="flex gap-4 justify-center">
+        <div className="flex gap-5 items-center">
           <Link
             href="/learn"
-            className="px-6 py-3 bg-accent text-white rounded-lg font-medium hover:bg-orange-800 transition-colors"
+            className="px-6 py-3 bg-foreground text-background font-medium hover:opacity-90 transition-opacity"
           >
             Start Learning
           </Link>
           <Link
             href="/recipes"
-            className="px-6 py-3 border border-border rounded-lg font-medium hover:bg-white transition-colors"
+            className="text-sm font-medium text-muted hover:text-foreground transition-colors"
           >
-            Browse Recipes
+            Browse Recipes &rarr;
           </Link>
         </div>
       </section>
 
       {/* How it works */}
-      <section className="mb-20">
-        <h2 className="text-2xl font-bold text-center mb-10">How it works</h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="text-center">
-            <div className="text-3xl mb-3">1</div>
-            <h3 className="font-semibold mb-2">Learn a concept</h3>
-            <p className="text-sm text-muted">
+      <section className="mb-24">
+        <h2 className="font-serif text-3xl mb-12">How it works</h2>
+        <div className="grid md:grid-cols-3 gap-10">
+          <div>
+            <div className="font-serif text-5xl italic text-muted mb-4">1</div>
+            <h3 className="font-medium mb-2">Learn a concept</h3>
+            <p className="text-sm text-muted leading-relaxed">
               Each lesson focuses on one building block of baking — gluten,
               hydration, fermentation, and more.
             </p>
           </div>
-          <div className="text-center">
-            <div className="text-3xl mb-3">2</div>
-            <h3 className="font-semibold mb-2">Pick a recipe</h3>
-            <p className="text-sm text-muted">
+          <div>
+            <div className="font-serif text-5xl italic text-muted mb-4">2</div>
+            <h3 className="font-medium mb-2">Pick a recipe</h3>
+            <p className="text-sm text-muted leading-relaxed">
               Choose from multiple recipes that teach the same concept. Learn
               your way.
             </p>
           </div>
-          <div className="text-center">
-            <div className="text-3xl mb-3">3</div>
-            <h3 className="font-semibold mb-2">Bake with guidance</h3>
-            <p className="text-sm text-muted">
+          <div>
+            <div className="font-serif text-5xl italic text-muted mb-4">3</div>
+            <h3 className="font-medium mb-2">Bake with guidance</h3>
+            <p className="text-sm text-muted leading-relaxed">
               Built-in timers and step-by-step instructions guide you through
               every fold, rest, and bake.
             </p>
@@ -68,29 +69,30 @@ export default async function HomePage() {
       </section>
 
       {/* Curriculum preview */}
-      <section className="mb-20">
-        <h2 className="text-2xl font-bold text-center mb-2">The Curriculum</h2>
-        <p className="text-muted text-center mb-8">
-          {lessons.length} lessons that take you from complete beginner to
-          confident baker.
-        </p>
-        <div className="space-y-3 max-w-2xl mx-auto">
+      <section className="mb-24">
+        <div className="flex items-baseline justify-between mb-8">
+          <h2 className="font-serif text-3xl">The Curriculum</h2>
+          <span className="text-sm text-muted">
+            {lessons.length} lessons
+          </span>
+        </div>
+        <div className="space-y-px border-t border-border">
           {lessons.map((lesson, index) => (
             <Link
               key={lesson.slug}
               href={`/learn/${lesson.slug}`}
-              className="flex items-center gap-4 p-4 bg-surface border border-border rounded-lg hover:border-accent transition-colors"
+              className="flex items-center gap-6 py-4 border-b border-border hover:bg-surface transition-colors px-2 -mx-2"
             >
-              <span className="text-sm font-mono text-muted w-6 text-right">
+              <span className="font-serif italic text-muted text-lg w-6 shrink-0 text-right">
                 {index + 1}
               </span>
-              <div>
-                <h3 className="font-medium">{lesson.title}</h3>
-                <p className="text-sm text-muted">
-                  {lesson.recipeOptions.length} recipe
-                  {lesson.recipeOptions.length !== 1 ? "s" : ""} to choose from
-                </p>
+              <div className="flex-1">
+                <span className="font-medium">{lesson.title}</span>
               </div>
+              <span className="text-sm text-muted shrink-0">
+                {lesson.recipeOptions.length} recipe
+                {lesson.recipeOptions.length !== 1 ? "s" : ""}
+              </span>
             </Link>
           ))}
         </div>
@@ -98,36 +100,18 @@ export default async function HomePage() {
 
       {/* Recipe preview */}
       <section>
-        <h2 className="text-2xl font-bold text-center mb-2">Recipe Library</h2>
-        <p className="text-muted text-center mb-8">
-          {recipes.length} recipes from beginner to advanced.
-        </p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="flex items-baseline justify-between mb-8">
+          <h2 className="font-serif text-3xl">Recipe Library</h2>
+          <Link
+            href="/recipes"
+            className="text-sm text-muted hover:text-foreground transition-colors"
+          >
+            All recipes &rarr;
+          </Link>
+        </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {recipes.map((recipe) => (
-            <Link
-              key={recipe.slug}
-              href={`/recipes/${recipe.slug}`}
-              className="p-4 bg-surface border border-border rounded-lg hover:border-accent transition-colors"
-            >
-              <div className="flex items-center gap-2 mb-2">
-                <span
-                  className={`text-xs px-2 py-0.5 rounded-full font-medium ${
-                    recipe.difficulty === "beginner"
-                      ? "bg-green-100 text-green-800"
-                      : recipe.difficulty === "intermediate"
-                        ? "bg-yellow-100 text-yellow-800"
-                        : "bg-red-100 text-red-800"
-                  }`}
-                >
-                  {recipe.difficulty}
-                </span>
-                <span className="text-xs text-muted">{recipe.totalTime}</span>
-              </div>
-              <h3 className="font-medium mb-1">{recipe.title}</h3>
-              <p className="text-sm text-muted line-clamp-2">
-                {recipe.description}
-              </p>
-            </Link>
+            <RecipeCard key={recipe.slug} recipe={recipe} />
           ))}
         </div>
       </section>

@@ -6,8 +6,8 @@ export function IngredientList({
   ingredients: Ingredient[];
 }) {
   return (
-    <div className="bg-surface border border-border rounded-lg p-5">
-      <h2 className="font-semibold text-lg mb-3">Ingredients</h2>
+    <div className="bg-surface border border-border p-5">
+      <h2 className="font-serif text-xl mb-4">Ingredients</h2>
       <ul className="space-y-2">
         {ingredients.map((ing, i) => (
           <li key={i} className="flex justify-between text-sm">

@@ -17,7 +17,7 @@ export function TimerControls({ timer, dispatch }: TimerControlsProps) {
   if (isComplete) {
     return (
       <div className="flex justify-center">
-        <span className="text-sm text-green-600 font-medium">
+        <span className="text-sm text-accent font-medium">
           Timer complete!
         </span>
       </div>
@@ -29,7 +29,7 @@ export function TimerControls({ timer, dispatch }: TimerControlsProps) {
       {!timer.isRunning ? (
         <button
           onClick={() => dispatch({ type: "START_TIMER" })}
-          className="px-6 py-2.5 bg-accent text-white rounded-lg font-medium hover:bg-orange-800 transition-colors"
+          className="px-6 py-2.5 bg-foreground text-background font-medium hover:opacity-90 transition-opacity"
         >
           {isIntervalPause
             ? `Start Round ${timer.intervalCurrent}`
@@ -40,7 +40,7 @@ export function TimerControls({ timer, dispatch }: TimerControlsProps) {
       ) : (
         <button
           onClick={() => dispatch({ type: "PAUSE_TIMER" })}
-          className="px-6 py-2.5 border border-border rounded-lg font-medium hover:bg-white transition-colors"
+          className="px-6 py-2.5 border border-border font-medium hover:border-foreground transition-colors"
         >
           Pause
         </button>

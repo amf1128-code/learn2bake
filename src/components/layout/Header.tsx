@@ -2,12 +2,12 @@ import Link from "next/link";
 
 export function Header() {
   return (
-    <header className="border-b border-border bg-surface sticky top-0 z-50">
+    <header className="border-b border-border bg-background sticky top-0 z-50">
       <nav className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
-        <Link href="/" className="text-lg font-bold text-accent">
+        <Link href="/" className="font-serif text-lg text-foreground tracking-wide">
           learn2bake
         </Link>
-        <div className="flex gap-6 text-sm font-medium">
+        <div className="flex gap-7 text-sm">
           <Link
             href="/learn"
             className="text-muted hover:text-foreground transition-colors"
