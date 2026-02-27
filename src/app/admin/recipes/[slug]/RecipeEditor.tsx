@@ -58,7 +58,7 @@ export default function RecipeEditor({ recipe: initial, concepts, isNew }: Props
     update({
       ingredients: [
         ...recipe.ingredients,
-        { name: "", amount: 0, unit: "g" },
+        { name: "", amount: 0, unit: "g", bakersPercentage: undefined },
       ],
     });
   }

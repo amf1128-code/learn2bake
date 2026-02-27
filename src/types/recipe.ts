@@ -4,7 +4,7 @@ export interface Ingredient {
   name: string;
   amount: number;
   unit: string;
-  bakersPercentage?: number;
+  bakersPercentage: number | undefined;
 }
 
 export interface ReferenceVideo {
